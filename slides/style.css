@@ -1,0 +1,11 @@
+.slidev-layout {
+  h1 + p {
+    @apply mt-4 opacity-100 mb-4;
+  }
+
+  .col-left,
+  .col-right {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
