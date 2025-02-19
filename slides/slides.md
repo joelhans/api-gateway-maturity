@@ -21,8 +21,6 @@ ngrok itself.
 -->
 
 ---
-transition: slide-left
----
 
 ![](./assets/python.png){width=120 .center style="rotate: 5deg;"}
 
@@ -82,16 +80,28 @@ It's a front door, but it's a fragile one.
 transition: slide-up
 ---
 
-# An API gateway is...
-
-The "front door" to all your APIs, handling routing, authentication, security,
-and traffic management.
+An API gateway can stop all that chaos.
 
 <v-click>
 
-# You need one because…
+# An API gateway is...
 
-They are designed specifically to solve the problem of the sprawling ecosystem.
+A "front door" to all your APIs.
+
+A single URL to expose all your APIs to the wild world outside your network.
+
+A way to offload non-functional requirements like AuthN/AuthZ, load balancing,
+rate limiting, failover, scaling, and much more from your services.
+
+</v-click>
+
+<v-click>
+
+# You (probably) need one because…
+
+They are designed specifically to solve the problem of the sprawling ecosystem I
+just covered.
+
 API gateways make expanding your services both simpler and more secure, create a
 better experience for your developers, and future-proof your
 architecture.
@@ -99,12 +109,19 @@ architecture.
 </v-click>
 
 ---
-transition: slide-left
+transition: slide-up
 ---
 
 # What is maturity, anyway?
 
-Well, I’ve been asking around.
+To paraphrase the Capability Maturity Model (CMM), maturity is how formal and
+actively optimized your processes are, from ad hoc to formally defined.
+
+<v-click>
+
+I’ve been asking around at ngrok, too.
+
+</v-click>
 
 <v-clicks>
 
@@ -115,7 +132,7 @@ software and not the infrastructure breaking down. `:lolsob:`"
 </v-clicks>
 
 ---
-transition: slide-left
+transition: slide-up
 ---
 
 # Maturity isn’t always a good thing.
@@ -145,6 +162,15 @@ multicloud (yikes).
 - Governance without bureaucracy.
 
 </v-after>
+
+---
+transition: slide-left
+layout: quote
+---
+
+As teams mature, they're shifting _away_ from building API gateways for
+themselves and _to_ enabling others while still maintaining control of policy
+and governance.
 
 ---
 layout: quote
@@ -188,27 +214,7 @@ gateway allow you to reach the state of maturity you’re after?
 
 ---
 transition: slide-left
----
-
-# Time to introduce you to our maturity levels
-
-<v-clicks>
-
-- **Build**: Pick your poison(s).
-- **Operate**: Wrangle chaos with automation.
-- **Scale**: Go multi-everything.
-- **Improve**: You built an internal developer platform… deal with it.
-- **Adapt**: Advanced, flexible, and future-proofed.
-
-</v-clicks>
-
-<v-click>
-
-- Functionality
-- Culture
-- Benchmarks: What 
-- Failure state:
-
+layout: two-cols
 ---
 
 # Audience poll: Where do you think you stand?
@@ -217,41 +223,126 @@ transition: slide-left
 - 🏗️ "We're duct-taping stuff together."
 - 🔥 "NGINX config copy-pasted from Stack Overflow. Send help."
 
+::right::
+
+![](./assets/qr-poll-01.png)
+
+---
+transition: slide-left
+---
+
+# Methodology
+
+- Implementers first, decision-makers second.
+- Focus on what specific capabilities to learn and enable next via _generalized
+estimates of progress_ rather than broad cross-functional or cultural change.
+- Follow "threads" of capability growth between each level of maturity.
+- Remain vendor agnostic and focused on capabilities of _off-the-shelf_ API gateway products
+(cloud-specific, self-hosted, managed).
+- Minimize the number of dimensions as much as possible!
+- Each level gets:
+  1. A general statement about where your API (gateway) program should be in
+  relation to the rest of your DevOps &rarr; platform engineering efforts.
+  2. Updates to each capability thread.
+  3. A _failure state_ where most API gateway programs go south.
+
+<!--
+
+I wanted to align maturity more closely with capabilities and specific
+implementations rather than wider platform engineering or cloud native
+transformation. For example, the cloud native maturity model has four
+dimensions—People, Process, Policy, and Technology—but we're talking about one
+piece of technology among many others. API gateways won't dictate people or
+process, but will impact them.
+
+"generalized estimates of progress"—thanks to Martin Fowler for that quote and
+inspiration.
+
+Deployment models/products:
+  - Vendor-Specific: AWS API Gateway, Apigee, Azure API Management
+  - Self-Hosted: Kong, Traefik, Envoy
+  - Managed: Cloudflare, Fastly, ngrok
+
+If you're thinking about building your own API gateway, go read some of the
+engineering blogs from Uber and Tinder!
+
+-->
+
+---
+transition: slide-up
+---
+
+# Time to introduce you to our maturity levels
+
+- **Build**: Pick your poison and commit.
+- **Operate**: Wrangle chaos with automation.
+- **Scale**: Go distributed in every dimension.
+- **Improve**: You built an internal developer platform… deal with it.
+- **Adapt**: Advanced, flexible, and future-proofed.
+
+<div v-click style="font-size: 1.2rem; margin-top: 4rem;">
+
+Manual → Automated → Distributed → Self-service → Intelligent and adaptive
+
+</div>
+
+<!--
+
+I'm trying to be a little cheeky with these, but I hope you can see the
+progression from building for yourself toward building toward others.
+
+-->
+
+---
+transition: slide-left
+---
+
+# Don't forget the capability threads!
+
+1. Deployment & automation
+2. Routing & availability
+3. AuthN+AuthZ+security
+4. Traffic management
+5. Observability
+6. Developer experience
+7. Governance
+
 ---
 transition: slide-up
 ---
 
 # Build
 
-**Functionality**: Establish a solid foundation for API traffic management.
+**You see the value of API gateways can bring to your platform and are ready to
+build a solid foundation for managing API traffic and treating APIs as
+products.**
 
-**Culture**: You treat APIs as products, and thus have clear ownership of how they go into production.
+<div v-click style="font-size:0.8rem">
 
-<v-click>
+|    |    |
+| -- | -- |
+| Deployment & automation | API keys or basic auth, perhaps handled by services or ingress controller from a past life |
+| Routing & availability | Static routing to upstreams with manual failover via a mix of basic ingress and API gateway |
+| AuthN+AuthZ+security | API keys and Basic Auth, some handled at the app layer  |
+| Traffic management | Basic rate limits applied at the API gateway to prevent abuse |
+| Observability | Basic logs (response types/times/errors) collected at both pod and gateway, followed by manual debugging |
+| Developer experience | Developers rely on DevOps/infra team to provision API deployments |
+| Governance | Security policies manually enforced  |
 
-## Benchmarks
-
-- Deployment model: You've decided on vendor-specific vs. self-hosted vs. managed solutions.
-- Routing and load balancing: Can you send requests to the right upstream?
-- Zero Trust: You support API keys, JWTs, OAuth2, and OpenID connect for AuthN/AuthZ.
-- Rate limiting: Can you prevent abuse *and* ensure fair usage?
-- Monitoring: You capture request logs, response times, and error rates.
-
-</v-click>
-
-<v-click>
-
-**Failure state**: "Our routing is a labyrinth and we're hardcoding auth. What's a rate limit?"
-
-</v-click>
+</div>
 
 <!--
-Vendor-Specific: AWS API Gateway, Apigee, Azure API Management
 
-Self-Hosted: Kong, Traefik, Envoy
+Here, Kubernetes is mostly used as an infrastructure layer—think routing.
 
-Managed: Cloudflare, Fastly, ngrok
 -->
+
+---
+transition: slide-left
+layout: quote
+---
+
+**Failure state**: "Our routing is a labyrinth and we're hardcoding auth. What's a rate limit?"
 
 ---
 transition: slide-up
@@ -259,16 +350,28 @@ transition: slide-up
 
 # Operate
 
-**Functionality**: Automate API gateway management and introduce governance mechanisms.
+**You're over ad-hoc changes and are ready to embrace a culture of automation,
+which in turn gets both best pratices but your first taste of governance.**
 
-**Culture**: You’re done with ad-hoc changes and embracing a culture of
-automation.
+<div v-click style="font-size:0.8rem">
+
+|    |    |
+| -- | -- |
+| Deployment & automation | TK |
+| Routing & availability | TK |
+| AuthN+AuthZ+security | TK |
+| Traffic management | TK |
+| Observability | TK |
+| Developer experience | TK |
+| Governance | TK |
+
+</div>
 
 <v-click>
 
 ## Benchmarks
 
-- Configuration sync: Use GitOps or IaC tooling to manage configurations.
+- Configuration sync: Use IaC/GitOps/APIops tooling to manage configurations.
 - Deployment options: Can you support A/B tests or canary releases?
 - Versioning: How do you handle deprecation and backwards compatability?
 - Dynamic routing: How do you handle moving between different upstream services?
@@ -290,9 +393,22 @@ transition: slide-up
 
 # Scale
 
-**Functionality**: Ensure high availability and efficient traffic handling. 
+**You're ready to stop fighting fires and build for distributed, multi-region
+(maybe multi-cloud?), and multi-team usage.**
 
-**Culture**: Availability is not just a platform problem, but a shared responsibility. 
+<div v-click style="font-size:0.8rem">
+
+|    |    |
+| -- | -- |
+| Deployment & automation | TK |
+| Routing & availability | TK |
+| AuthN+AuthZ+security | TK |
+| Traffic management | TK |
+| Observability | TK |
+| Developer experience | TK |
+| Governance | TK |
+
+</div>
 
 <v-click>
 
@@ -316,17 +432,34 @@ probably won’t work in a real failover scenario.”
 
 </v-click>
 
+<!--
+
+
+-->
+
 ---
 transition: slide-up
 ---
 
 # Improve
 
-**Functionality**: Enable internal teams to ship APIs faster while maintaining
-governance. 
+**You're done with ticket-based development and bottlenecking your
+peers&mdash;time to become an enabler for self-service (without things going all
+wild west on you).**
 
-**Culture**: You’re done with ticket-based development with a centralized team
-bottlenecking necessary changes and new deployments.
+<div v-click style="font-size:0.8rem">
+
+|    |    |
+| -- | -- |
+| Deployment & automation | TK |
+| Routing & availability | TK |
+| AuthN+AuthZ+security | TK |
+| Traffic management | TK |
+| Observability | TK |
+| Developer experience | TK |
+| Governance | TK |
+
+</div>
 
 <v-click>
 
@@ -354,6 +487,20 @@ transition: slide-left
 
 **Culture**: You don't overcomplicate your API architecture without a clear ROI. 
 
+<div v-click style="font-size:0.8rem">
+
+|    |    |
+| -- | -- |
+| Deployment & automation | TK |
+| Routing & availability | TK |
+| AuthN+AuthZ+security | TK |
+| Traffic management | TK |
+| Observability | TK |
+| Developer experience | TK |
+| Governance | TK |
+
+</div>
+
 <v-click>
 
 ## Benchmarks
@@ -374,6 +521,7 @@ really close to figuring out who Pepe Silvia is."
 
 ---
 transition: slide-left
+layout: two-cols
 ---
 
 # Audience poll: Where do you think you stand now?
@@ -381,6 +529,10 @@ transition: slide-left
 - 🏆 "Feeling mature, but not legacy!"
 - 🚧 "We’ve got work to do."
 - 🤡 "I just realized we don’t actually have an API gateway."
+
+::right::
+
+![](./assets/qr-poll-02.png)
 
 ---
 
@@ -393,8 +545,11 @@ This model is now an open source repository on GitHub: `joelhans/api-gateway-mat
 I've included details on how anyone can contribute and make the model better:
 
 - Create issues or PRs for quick fixes
-- Lend your real-world experience on culture or failure states
-- Flesh out the model with more depth and benchmark specificity
+- Flesh out the model with more depth and detail for each level and capability
+thread
+- Extend the model into decision-maker territory
+- Explore how to connect to other CNCF maturity models
+- Contribute real-world experiences to create "illustrations" for each level
 
 </v-click>
 
@@ -403,7 +558,7 @@ I've included details on how anyone can contribute and make the model better:
 You can also read the model in a more human-readable format at `api-gateway-maturity.joelhans.xyz`.
 
 - Fun fact: This is published entirely via an ngrok cloud endpoint!
-- README published via simple script that renders the Markdown and creates a
+- The `README.md` is published via simple script that renders the Markdown and creates a
 cloud endpoint on the ngrok network, with the HTML as a custom `200` response.
 
 </v-click>
