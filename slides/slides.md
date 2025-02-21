@@ -40,15 +40,6 @@ ngrok itself.
 
 ![](./assets/webflow.png){v-click width=120 style="position: absolute; top: -30px; right: -40px; rotate: -20deg"}
 
-<style>
-img.center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-</style>
-
 <!--
 
 It starts with just a simple Python app. It's a one-page marketing site and the
@@ -303,7 +294,7 @@ transition: slide-left
 2. Routing & availability
 3. AuthN+AuthZ+security
 4. Traffic management
-5. Observability
+5. Observability & debugging
 6. Developer experience
 7. Governance
 
@@ -317,17 +308,17 @@ transition: slide-up
 build a solid foundation for managing API traffic and treating APIs as
 products.**
 
-<div v-click style="font-size:0.8rem">
+<div style="font-size:0.8rem">
 
 |    |    |
 | -- | -- |
 | Deployment & automation | API keys or basic auth, perhaps handled by services or ingress controller from a past life |
 | Routing & availability | Static routing to upstreams with manual failover via a mix of basic ingress and API gateway |
-| AuthN+AuthZ+security | API keys and Basic Auth, some handled at the app layer  |
-| Traffic management | Basic rate limits applied at the API gateway to prevent abuse |
-| Observability | Basic logs (response types/times/errors) collected at both pod and gateway, followed by manual debugging |
+| AuthN+AuthZ+security | Relies on API keys and Basic Auth, some handled at the app layer instead of the gateway |
+| Traffic management | Basic rate limits applied at the API gateway to prevent abuse and ensure fairness |
+| Observability & debugging | Basic logs (response types/times/errors) collected at both pod and gateway, followed by manual debugging |
 | Developer experience | Developers rely on DevOps/infra team to provision API deployments |
-| Governance | Security policies manually enforced  |
+| Governance | Security policies manually enforced (perhaps inconsistently) during (perhaps infrequent) audits |
 
 </div>
 
@@ -353,39 +344,27 @@ transition: slide-up
 **You're over ad-hoc changes and are ready to embrace a culture of automation,
 which in turn gets both best pratices but your first taste of governance.**
 
-<div v-click style="font-size:0.8rem">
+<div style="font-size:0.8rem">
 
 |    |    |
 | -- | -- |
-| Deployment & automation | TK |
-| Routing & availability | TK |
-| AuthN+AuthZ+security | TK |
-| Traffic management | TK |
-| Observability | TK |
-| Developer experience | TK |
-| Governance | TK |
+| Deployment & automation | Gateway configs are controlled via IaC and deployed with standardized tooling or GitOps |
+| Routing & availability | Weighted traffic splitting for A/B, blue/green, canary deploys; dynamic routing  |
+| AuthN+AuthZ+security | Support for JWTs or Oauth2, centrally managed and provisioned |
+| Traffic management | Per-service and per-client rate limits applied via CRDs |
+| Observability & debugging | Structured logs ingested into a single platform (stretch goal for distributed tracing!) |
+| Developer experience | Self-service internal API registry for what does (or can) live behind the API gateway |
+| Governance | Certain policies (AuthN/Z, logging, rate limiting) standardized across all APIs |
 
 </div>
 
-<v-click>
-
-## Benchmarks
-
-- Configuration sync: Use IaC/GitOps/APIops tooling to manage configurations.
-- Deployment options: Can you support A/B tests or canary releases?
-- Versioning: How do you handle deprecation and backwards compatability?
-- Dynamic routing: How do you handle moving between different upstream services?
-- Observability: You’re piping API gateway logs to another service, whether
-that’s Prometheus+Grafana or Datadog, to understand API performance.
-
-</v-click>
-
-<v-click>
+---
+transition: slide-left
+layout: quote
+---
 
 **Failure state**: “Every change requires a Slack war, a handful of Linear
 tickets, and a few days from everyone’s life.” 
-
-</v-click>
 
 ---
 transition: slide-up
@@ -396,46 +375,28 @@ transition: slide-up
 **You're ready to stop fighting fires and build for distributed, multi-region
 (maybe multi-cloud?), and multi-team usage.**
 
-<div v-click style="font-size:0.8rem">
+<div style="font-size:0.8rem">
 
 |    |    |
 | -- | -- |
-| Deployment & automation | TK |
-| Routing & availability | TK |
-| AuthN+AuthZ+security | TK |
-| Traffic management | TK |
-| Observability | TK |
-| Developer experience | TK |
-| Governance | TK |
+| Deployment & automation | Dynamic API gateway configurations via K8s operators |
+| Routing & availability | Multi-region deployments with failover, DDoS protection, global load balancing |
+| AuthN+AuthZ+security | mTLS for service-to-service communication  |
+| Traffic management | Per-region and per-tenant limits plus dynamic throttling based on load or error (circuit breakers) |
+| Observability & debugging | Centralized API monitoring and anomaly detection to help developers with debugging |
+| Developer experience | Teams can provision API gateways per project/function with central governance |
+| Governance | API gateway compliance enforced via CI/CD and automated policy check jobs |
 
 </div>
 
-<v-click>
-
-## Benchmarks
-
-- Multi-readiness: Do you have *at least* a plan (both technical and human) for
-how you’ll go multi-region or multi-cloud?
-- Load balancing: Have global DDoS protection and global load balancing, with
-your API gateway in multiple PoPs around the world.
-- Fine-grained traffic management: Implement per-customer, per-region, or
-per-endpoint limits with rate limits.
-- Service health: Do you use circuit breakers to prevent cascading
-failures from a single service?
-
-</v-click>
-
-<v-click>
+---
+transition: slide-left
+layout: quote
+---
 
 **Failure state**: “Our ‘multi-readiness’ strategy is LGTM—which means it
 probably won’t work in a real failover scenario.” 
 
-</v-click>
-
-<!--
-
-
--->
 
 ---
 transition: slide-up
@@ -447,77 +408,107 @@ transition: slide-up
 peers&mdash;time to become an enabler for self-service (without things going all
 wild west on you).**
 
-<div v-click style="font-size:0.8rem">
+<div style="font-size:0.8rem">
 
 |    |    |
 | -- | -- |
-| Deployment & automation | TK |
-| Routing & availability | TK |
-| AuthN+AuthZ+security | TK |
-| Traffic management | TK |
-| Observability | TK |
-| Developer experience | TK |
-| Governance | TK |
+| Deployment & automation | Developers can take new APIs into K8s production—with ingress—all by their lonesome! |
+| Routing & availability | Dynamic routing to support new or changing APIs within your internal platform |
+| AuthN+AuthZ+security | Security teams define auth under policy-as-code for developers to self-service within compliance boundaries |
+| Traffic management | Per-service blocks (geo, IPs), limits, and breakers are developer-defined and composed after global policies |
+| Observability & debugging | Debugging gets easier with replay tools that work in prod/stage/dev |
+| Developer experience | Ephemeral environments for testing not just services themselves, but also the impact of API policies |
+| Governance | Developers can take new APIs into production without tearing down all the precious compliance work! |
 
 </div>
 
-<v-click>
+<!--
 
-## Benchmarks
+This is where your role evolves completely. For better or worse?
 
-- Self-service: Enable teams to define their own API gateway configurations while also controlling some policies equally across all APIs.
-- Testing/staging: Provide ephemeral environments for testing *API policies*.
-- Zero Trust+: Block access from known malicious IPs, geographies, or anonymous/VPN networks.
+Composability makes a huge difference.
 
-</v-click>
+You want to have all those global policies, the things that security and
+compliance people really care about, managed centrally.
 
-<v-click>
+Let developers layer additional rules behind those. Not override them.
 
-**Failure state**: "We built a developer platform... that our developers despise!"
-
-</v-click>
+-->
 
 ---
 transition: slide-left
+layout: quote
+---
+
+**Failure state**: "We built a developer platform... hope you like it?"
+
+---
+transition: slide-up
 ---
 
 # Adapt
 
-**Functionality**: Support emerging patterns and ensure long-term API strategy alignment. 
+**You're actively supporting emerging patterns while sticking to a long-term API
+strategy... and not overcomplicating your architecture without a clear ROI.**
 
-**Culture**: You don't overcomplicate your API architecture without a clear ROI. 
-
-<div v-click style="font-size:0.8rem">
+<div style="font-size:0.8rem">
 
 |    |    |
 | -- | -- |
-| Deployment & automation | TK |
-| Routing & availability | TK |
-| AuthN+AuthZ+security | TK |
-| Traffic management | TK |
-| Observability | TK |
-| Developer experience | TK |
-| Governance | TK |
+| Deployment & automation | Gateways are policy-driven, dynamic, aware of changes to topology/workload, and autonomous |
+| Routing & availability | Routing gets fully dynamic to shift traffic to different clusters on latency/health/cost  |
+| AuthN+AuthZ+security | API access isn't just on (nice token! nice cert!) or off, but based on user behavior and threat intelligence  |
+| Traffic management | Limits of all types are auto-adjusted based on workload patterns and predictive analytics |
+| Observability & debugging | AI root cause analysis identifies and mitigates service failures as logged by the gateway |
+| Developer experience | Policy goes past guardrails to actively assist devs with recommendations of best practices and optimizations |
+| Governance | Compliance monitoring adjusts gateway policies in real-time based on new threats or regulatory changes |
 
 </div>
 
-<v-click>
+<!--
 
-## Benchmarks
+This is where things get real fuzzy.
 
-- Multi-action: You’re actively supporting cross-cloud or hybrid deployments.
-- Governance: You implement identical API governance no matter where your APIs are running or who starts them up.
-- Zero Trust++: Are you implementing API posture management or risk-based authentication?
-- AI: Sure, throw some AI in there to optimize routing or predict API failures.
+-->
 
-</v-click>
+---
+transition: slide-left
+layout: quote
+---
 
-<v-click>
-
-**Failure state**: "Our architecture diagram looks like we're finally getting
+**Failure(?) state**: "Our architecture diagram looks like we're finally getting
 really close to figuring out who Pepe Silvia is."
 
-</v-click>
+<img 
+  src="./assets/pepe-silvia.jpg" 
+  class="center" 
+  v-click 
+  v-motion
+  :initial="{
+    opacity: 0,
+    x: 0,
+    y: 0,
+  }"
+  :enter="{
+    opacity: 1,
+    x: 0,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: '100',
+      delay: 500,
+    },
+  }"
+/>
+
+![](./assets/pepe-silvia.jpg){width=400 .center v-click}
+
+<!--
+
+Let's be honest—if you've gotten to this point, you really haven't failed at
+all.
+
+-->
 
 ---
 transition: slide-left
@@ -563,6 +554,13 @@ cloud endpoint on the ngrok network, with the HTML as a custom `200` response.
 
 </v-click>
 
+<!--
+
+I include this specifically for a colleague in my past who very kindly always
+told me how much she hates this kinds of endings.
+
+-->
+
 ---
 transition: fade
 layout: two-cols
@@ -577,8 +575,5 @@ layout: two-cols
 <style>
 p {
     margin: 0;
-}
-img {
-    max-width: 200px;
 }
 </style>
