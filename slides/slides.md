@@ -14,7 +14,34 @@ fonts:
 
 ## *Where Do You Rank?*
 
+<p v-click class="center warning">v0.0.1</p>
+
+<style>
+  h1 { font-size: 3.2rem; text-align: center; }
+  h2 { font-size: 1.65rem; text-align: center; }
+  .warning {
+    display: block;
+    font-family: monospace;
+    font-size: 4rem;
+    background: white;
+    color: red;
+    rotate: 2deg;
+    margin: 0;
+    padding: 2rem;
+    border: 1px solid red;
+  }
+</style>
+
 <!--
+
+FOR NGROK
+
+Okay, Sam gave me the really good but very terrifying idea of asking the entire
+company for feedback on my upcoming KubeCon talk about the idea of API gateway
+maturity.
+
+FOR KUBECON
+
 About me: I'm Joel, and I do all things DevRel at ngrok, the universal gateway
 company. I love stories, so let me start with a short one loosely based on
 ngrok itself.
@@ -23,9 +50,7 @@ ngrok itself.
 ---
 
 ![](./assets/python.png){width=120 .center style="rotate: 5deg;"}
-
 ![](/assets/nginx.png){width=400 v-click .center style="margin-top: -70px; margin-left: -40px; rotate: -8deg;"}
-
 ![](./assets/k8s.png){width=180 v-click .center style="margin-top: 60px; margin-left: 100px;"}
 
 <div v-click style="display: block; margin-left: 20px; rotate: -1deg;">
@@ -33,12 +58,15 @@ ngrok itself.
 ![](./assets/api.png){width=80}
 ![](./assets/api.png){width=80}
 ![](./assets/api.png){width=80}
+![](./assets/api.png){width=80}
+![](./assets/api.png){width=80}
+![](./assets/api.png){width=80}
 
 </div>
 
-![](./assets/docusaurus.png){v-click width=120 style="margin-left: 120px; margin-top: 80px; rotate: 3deg"}
-
+![](./assets/docusaurus.png){v-click width=120 .center style="margin-left: -120px; margin-top: 120px; rotate: 3deg"}
 ![](./assets/webflow.png){v-click width=120 style="position: absolute; top: -30px; right: -40px; rotate: -20deg"}
+![](./assets/vercel.png){v-click width=100 style="position: absolute; bottom: 40px; right: 140px;"}
 
 <!--
 
@@ -71,7 +99,18 @@ It's a front door, but it's a fragile one.
 transition: slide-up
 ---
 
-An API gateway can stop all that chaos.
+**TK TK TK TK**
+
+<!--
+
+An API gateway brings order to that chaos.
+
+-->
+
+---
+transition: slide-up
+disabled: true
+---
 
 <v-click>
 
@@ -90,7 +129,7 @@ rate limiting, failover, scaling, and much more from your services.
 
 # You (probably) need one because…
 
-They are designed specifically to solve the problem of the sprawling ecosystem I
+They're designed specifically to solve the problem of the sprawling ecosystem I
 just covered.
 
 API gateways make expanding your services both simpler and more secure, create a
@@ -112,15 +151,11 @@ actively optimized your processes are, from ad hoc to formally defined.
 
 I’ve been asking around at ngrok, too.
 
-</v-click>
-
-<v-clicks>
-
 - "The API won't change underneath me."
 - "When I get paged because something is broken, it's because of a bug in my
 software and not the infrastructure breaking down. `:lolsob:`"
 
-</v-clicks>
+</v-click>
 
 ---
 transition: slide-up
@@ -128,7 +163,7 @@ transition: slide-up
 
 # Maturity isn’t always a good thing.
 
-<v-clicks>
+<v-click>
 
 - There's a fine line between *mature* and *legacy*.
 - Mature platforms are difficult for you to modify and others to build upon.
@@ -137,22 +172,18 @@ knowledge or it just worked once so leave it alone.
 - Hard to steer the ship quickly if you need to do something complex... like
 multicloud (yikes).
 
-</v-clicks>
+</v-click>
 
 <v-click>
 
 ## But it _can_ be a conscious effort to get you:
 
-</v-click>
-
-<v-after>
-    
 - Reliability without surprises.
 - Velocity without chaos.
 - Scalability without rip-and-replace (again).
 - Governance without bureaucracy.
 
-</v-after>
+</v-click>
 
 ---
 transition: slide-left
@@ -184,7 +215,13 @@ could apply it to their organizations, particularly from a platform engineering
 perspective.
 
 They loved having this kind of roadmap to look forward to, but still
-struggled. How were they supposed to apply this to a specific technology?
+struggled. 
+
+CNCF is agnostic:
+
+- They won't tell us what technology or projects to use!
+- They won't tell us how to get better at a single technology or product! (except
+maybe K8s itself)
 
 Fast forward, and I'm in a place where I think about and write about and build
 around API gateways all the time. Why not apply this methodology to a specific
@@ -193,19 +230,9 @@ technology?
 -->
 
 ---
-layout: quote
-transition: slide-up
----
-
-# You should care because…
-
-API gateways are not some set it and forget it tool&mdash;if you don’t maximize how
-you use it, you’re actively making your life harder. Will your current API
-gateway allow you to reach the state of maturity you’re after?
-
----
 transition: slide-left
 layout: two-cols
+disabled: true
 ---
 
 # Audience poll: Where do you think you stand?
@@ -226,7 +253,7 @@ transition: slide-left
 
 - Implementers first, decision-makers second.
 - Focus on what specific capabilities to learn and enable next via _generalized
-estimates of progress_ rather than broad cross-functional or cultural change.
+estimates of progress_ <span style="display: block; position: absolute; font-size: 12px; font-style: italic; margin-top: -12px; right: 80px;">TY Martin Fowler!</span> rather than broad cross-functional or cultural change.
 - Follow "threads" of capability growth between each level of maturity.
 - Remain vendor agnostic and focused on capabilities of _off-the-shelf_ API gateway products
 (cloud-specific, self-hosted, managed).
@@ -239,23 +266,15 @@ estimates of progress_ rather than broad cross-functional or cultural change.
 
 <!--
 
-I wanted to align maturity more closely with capabilities and specific
-implementations rather than wider platform engineering or cloud native
-transformation. For example, the cloud native maturity model has four
-dimensions—People, Process, Policy, and Technology—but we're talking about one
-piece of technology among many others. API gateways won't dictate people or
-process, but will impact them.
+1. I wanted to align maturity with capabilities and implementation rather than
+   trying to focus on platform engineering as a whole. An API gateway won't
+   drive an entire infra organization.
 
-"generalized estimates of progress"—thanks to Martin Fowler for that quote and
-inspiration.
+2. This includes cloud-specific, self-hosted, and managed gateway products, but
+   if you're creating your own API gateway, go read some engineering blogs from
+   Uber or Tinder.
 
-Deployment models/products:
-  - Vendor-Specific: AWS API Gateway, Apigee, Azure API Management
-  - Self-Hosted: Kong, Traefik, Envoy
-  - Managed: Cloudflare, Fastly, ngrok
-
-If you're thinking about building your own API gateway, go read some of the
-engineering blogs from Uber and Tinder!
+3. I want this to be (at least for now) simple.
 
 -->
 
@@ -279,7 +298,7 @@ Manual → Automated → Distributed → Self-service → Intelligent and adapti
 
 <!--
 
-I'm trying to be a little cheeky with these, but I hope you can see the
+1. I'm trying to be a little cheeky with these, but I hope you can see the
 progression from building for yourself toward building toward others.
 
 -->
@@ -298,6 +317,13 @@ transition: slide-left
 6. Developer experience
 7. Governance
 
+<!--
+
+1. I've taken some liberties with these groups, but I want to minimize the
+dimensions as much as possible.
+
+-->
+
 ---
 transition: slide-up
 ---
@@ -312,9 +338,9 @@ products.**
 
 |    |    |
 | -- | -- |
-| Deployment & automation | API keys or basic auth, perhaps handled by services or ingress controller from a past life |
+| Deployment & automation | Deployments and configuration changes all happen manually in a ticket-driven process |
 | Routing & availability | Static routing to upstreams with manual failover via a mix of basic ingress and API gateway |
-| AuthN+AuthZ+security | Relies on API keys and Basic Auth, some handled at the app layer instead of the gateway |
+| AuthN+AuthZ+security | Relies on API keys and Basic Auth, some handled at the app/service layer instead of the gateway |
 | Traffic management | Basic rate limits applied at the API gateway to prevent abuse and ensure fairness |
 | Observability & debugging | Basic logs (response types/times/errors) collected at both pod and gateway, followed by manual debugging |
 | Developer experience | Developers rely on DevOps/infra team to provision API deployments |
@@ -324,7 +350,13 @@ products.**
 
 <!--
 
-Here, Kubernetes is mostly used as an infrastructure layer—think routing.
+1. The most consistent thing is inconsistency here. Some apps still haven't
+   offloaded functions like auth, and the idea of a consistent front door isn't
+   solid yet.
+
+2. Everything is kind of hard.
+
+3. Kubernetes is mostly used as an infrastructure layer—think routing.
 
 -->
 
@@ -333,7 +365,14 @@ transition: slide-left
 layout: quote
 ---
 
-**Failure state**: "Our routing is a labyrinth and we're hardcoding auth. What's a rate limit?"
+**Failure state**: "Our routing is a labyrinth and we're still hardcoding auth.
+Couldn't we just use a load balancer instead?"
+
+<!--
+
+1. Things start ad-hoc and they stay ad-hoc.
+
+-->
 
 ---
 transition: slide-up
@@ -350,13 +389,26 @@ which in turn gets both best pratices but your first taste of governance.**
 | -- | -- |
 | Deployment & automation | Gateway configs are controlled via IaC and deployed with standardized tooling or GitOps |
 | Routing & availability | Weighted traffic splitting for A/B, blue/green, canary deploys; dynamic routing  |
-| AuthN+AuthZ+security | Support for JWTs or Oauth2, centrally managed and provisioned |
-| Traffic management | Per-service and per-client rate limits applied via CRDs |
+| AuthN+AuthZ+security | Support for JWTs or OAuth2, centrally managed and provisioned |
+| Traffic management | Per-service and per-client rate limits |
 | Observability & debugging | Structured logs ingested into a single platform (stretch goal for distributed tracing!) |
 | Developer experience | Self-service internal API registry for what does (or can) live behind the API gateway |
 | Governance | Certain policies (AuthN/Z, logging, rate limiting) standardized across all APIs |
 
 </div>
+
+<!--
+
+1. You replacing ad-hoc steps with automation.
+
+2. You take your first steps to apply those essential policies like auth
+   across all your APIs with a single front door that fans out to everything
+   else.
+
+3. You're starting to use more native K8s tooling to configure your gateways and
+   make it all management. Does the word 'operator' ring a bell for anyone?
+
+-->
 
 ---
 transition: slide-left
@@ -381,7 +433,7 @@ transition: slide-up
 | -- | -- |
 | Deployment & automation | Dynamic API gateway configurations via K8s operators |
 | Routing & availability | Multi-region deployments with failover, DDoS protection, global load balancing |
-| AuthN+AuthZ+security | mTLS for service-to-service communication  |
+| AuthN+AuthZ+security | Fine-grained access control per API and mTLS wherever relevant |
 | Traffic management | Per-region and per-tenant limits plus dynamic throttling based on load or error (circuit breakers) |
 | Observability & debugging | Centralized API monitoring and anomaly detection to help developers with debugging |
 | Developer experience | Teams can provision API gateways per project/function with central governance |
@@ -389,14 +441,27 @@ transition: slide-up
 
 </div>
 
+<!--
+
+1. This is the multi-everything stage. You get distributed and you get a little
+   bit dynamic.
+
+2. Even if you're not ready to actually implement some of these big engineering
+   efforts, you have a plan of action for both the people and technology
+   required.
+
+3. You're giving developers the ability to use your API gateway's K8s tooling,
+   which is the first step in becoming a platform.
+
+-->
+
 ---
 transition: slide-left
 layout: quote
 ---
 
-**Failure state**: “Our ‘multi-readiness’ strategy is LGTM—which means it
-probably won’t work in a real failover scenario.” 
-
+**Failure state**: “This is _our_ platform. It works. It's beautiful! Its highly
+available and properly governed and fully automated—*WAIT DON'T TOUCH THAT*—”
 
 ---
 transition: slide-up
@@ -412,26 +477,27 @@ wild west on you).**
 
 |    |    |
 | -- | -- |
-| Deployment & automation | Developers can take new APIs into K8s production—with ingress—all by their lonesome! |
+| Deployment & automation | Developers define APIs and gateways all the way to production all by their lonesome! |
 | Routing & availability | Dynamic routing to support new or changing APIs within your internal platform |
 | AuthN+AuthZ+security | Security teams define auth under policy-as-code for developers to self-service within compliance boundaries |
 | Traffic management | Per-service blocks (geo, IPs), limits, and breakers are developer-defined and composed after global policies |
-| Observability & debugging | Debugging gets easier with replay tools that work in prod/stage/dev |
-| Developer experience | Ephemeral environments for testing not just services themselves, but also the impact of API policies |
+| Observability & debugging | Debugging gets easier with inspection and replay tools that work in dev/stage/prod |
+| Developer experience | Developers manage API gateway settings within policy constraints |
 | Governance | Developers can take new APIs into production without tearing down all the precious compliance work! |
 
 </div>
 
 <!--
 
-This is where your role evolves completely. For better or worse?
+1. This is where your role evolves completely from building for yourself to
+   building for others. For better or worse?
 
-Composability makes a huge difference.
+2. You have to maintain the proper guardrails for security and compliance, but
+   also let developer layer additonal rules, not undermine or override them, for
+   their services. This is where composability makes a huge difference.
 
-You want to have all those global policies, the things that security and
-compliance people really care about, managed centrally.
-
-Let developers layer additional rules behind those. Not override them.
+3. This is a big orchestration of IaC and Policy as Code that keeps people on
+   the right rails and never gets in their way.
 
 -->
 
@@ -467,7 +533,15 @@ strategy... and not overcomplicating your architecture without a clear ROI.**
 
 <!--
 
-This is where things get real fuzzy.
+1. This is where things get real fuzzy but maybe also fun?. A lot of this isn't
+   baked into API gateway products directly, so that means lots of integrations
+   and data egress and so on.
+
+2. I could've honestly put *AI AI AI* on every one of these, but it's not quite
+   clear whether that's actually the future of this slice of technology.
+
+3. Every part of this is based on Kubernetes tooling and telemetry—nothing is
+   static any more.
 
 -->
 
@@ -479,33 +553,11 @@ layout: quote
 **Failure(?) state**: "Our architecture diagram looks like we're finally getting
 really close to figuring out who Pepe Silvia is."
 
-<img 
-  src="./assets/pepe-silvia.jpg" 
-  class="center" 
-  v-click 
-  v-motion
-  :initial="{
-    opacity: 0,
-    x: 0,
-    y: 0,
-  }"
-  :enter="{
-    opacity: 1,
-    x: 0,
-    y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: '100',
-      delay: 500,
-    },
-  }"
-/>
-
-![](./assets/pepe-silvia.jpg){width=400 .center v-click}
+![](./assets/pepe-silvia.jpg){width=800 .center v-click}
 
 <!--
 
-Let's be honest—if you've gotten to this point, you really haven't failed at
+1. Let's be honest—if you've gotten to this point, you really haven't failed at
 all.
 
 -->
@@ -513,6 +565,7 @@ all.
 ---
 transition: slide-left
 layout: two-cols
+disabled: true
 ---
 
 # Audience poll: Where do you think you stand now?
@@ -533,7 +586,7 @@ layout: two-cols
 
 This model is now an open source repository on GitHub: `joelhans/api-gateway-maturity-model`
 
-I've included details on how anyone can contribute and make the model better:
+~~I've included~~ I will someday soon details on how anyone can contribute and make the model better:
 
 - Create issues or PRs for quick fixes
 - Flesh out the model with more depth and detail for each level and capability
@@ -549,8 +602,6 @@ thread
 You can also read the model in a more human-readable format at `api-gateway-maturity.joelhans.xyz`.
 
 - Fun fact: This is published entirely via an ngrok cloud endpoint!
-- The `README.md` is published via simple script that renders the Markdown and creates a
-cloud endpoint on the ngrok network, with the HTML as a custom `200` response.
 
 </v-click>
 
