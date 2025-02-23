@@ -13,8 +13,8 @@ with velocity), and **Adapt** (enabling advanced patterns).
 
 This project began as a talk for [KubeCon EU
 2025](https://kccnceu2025.sched.com/event/1tx7N). The slides for the talk are
-available in the [`slides/`
-folder](https://github.com/joelhans/api-gateway-maturity/tree/main/slides) as a
+available in the [`kubecon-eu-2025-talk/`
+folder](https://github.com/joelhans/api-gateway-maturity/tree/main/kubecon-ue-2025-talk) as a
 [Slidev](https://github.com/slidevjs/slidev) project.
  
 ## Methodology
