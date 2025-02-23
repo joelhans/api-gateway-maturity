@@ -1,5 +1,5 @@
 ---
-theme: default
+theme: dracula
 
 title: "API Gateway Maturity Matrix: Where Do You Rank?"
 
@@ -62,9 +62,21 @@ ngrok itself.
 ![](./assets/go.png){width=80}
 ![](./assets/go.png){width=80}
 
-<v-click at="8"><span style="position: absolute; top: 25px; left: 34px; font-family: monospace; font-size: 0.9rem; background: white; padding: 0 0.2rem; border: 1px solid red;">v2</span></v-click>
-<v-click at="8"><span style="position: absolute; top: 166px; left: 34px; font-family: monospace; font-size: 0.9rem; background: white; padding: 0 0.2rem; border: 1px solid red;">v2</span></v-click>
-<v-click at="8"><span style="position: absolute; top: 237px; left: 34px; font-family: monospace; font-size: 0.9rem; background: white; padding: 0 0.2rem; border: 1px solid red;">v2</span></v-click>
+<v-click at="8">
+    <span class="v2">
+        v2
+    </span>
+</v-click>
+<v-click at="8">
+    <span class="v2" style="top: 168px;">
+        v2
+    </span>
+</v-click>
+<v-click at="8">
+    <span class="v2" style="top: 310px;">
+        v2
+    </span>
+</v-click>
 
 </div>
 
@@ -83,6 +95,20 @@ ngrok itself.
 ![](./assets/go.png){width=80}
 
 </div>
+
+<style>
+    .v2 {
+        position: absolute; 
+        top: 27px; 
+        left: 34px; 
+        font-family: monospace; 
+        font-size: 0.9rem; 
+        background: white;
+        color: var(--purple);
+        padding: 0 0.2rem; 
+        border: 1px solid red;
+    }
+</style>
 
 <!--
 
@@ -632,7 +658,7 @@ disabled: true
 
 This model is now an open source repository on GitHub: `joelhans/api-gateway-maturity-model`
 
-~~I've included~~ I will someday soon details on how anyone can contribute and make the model better:
+I've included details on how anyone can contribute and make the model better:
 
 - Create issues or PRs for quick fixes
 - Flesh out the model with more depth and detail for each level and capability
@@ -645,9 +671,13 @@ thread
 
 <v-click>
 
-You can also read the model in a more human-readable format at `api-gateway-maturity.joelhans.xyz`.
+You can also read the model at `https://api-gateway-maturity.joelhans.xyz`.
 
 - Fun fact: This is published entirely via an ngrok cloud endpoint!
+- I have a small script that renders the `README.md` file into HTML, drops that
+  into an HTML template, inserts *that* into a `custom-response` Traffic Policy
+  action, and finally pushes the full policy file to my cloud endpoint with
+  `ngrok api endpoints update ...`.
 
 </v-click>
 
@@ -655,9 +685,18 @@ You can also read the model in a more human-readable format at `api-gateway-matu
     position: absolute; 
     bottom: 20px; 
     right: 100px;
-    border: 1px solid black;
     rotate: 2deg;
 ">
+
+<div style="
+    color: var(--purple); 
+    font-size: 3rem;
+    z-index: 100;
+    position: absolute;
+    right: 100px;
+">
+    wen
+</div>
 
 ```
 on_http_request:
