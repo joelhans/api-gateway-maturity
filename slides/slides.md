@@ -49,24 +49,40 @@ ngrok itself.
 
 ---
 
-![](./assets/python.png){width=120 .center style="rotate: 5deg;"}
-![](/assets/nginx.png){width=400 v-click .center style="margin-top: -70px; margin-left: -40px; rotate: -8deg;"}
+![](./assets/python.png){width=120 v-click.hide="3" .center style="rotate: 5deg;"}
+![](/assets/nginx.png){width=300 v-click .center style="margin-top: -70px; margin-left: -40px; rotate: -8deg;"}
 ![](./assets/k8s.png){width=180 v-click .center style="margin-top: 60px; margin-left: 100px;"}
 
-<div v-click style="display: block; margin-left: 20px; rotate: -1deg;">
+<div v-click style="position: absolute; display: block; left: 80px; top: 80px; rotate: 3deg;">
 
-![](./assets/api.png){width=80}
-![](./assets/api.png){width=80}
-![](./assets/api.png){width=80}
-![](./assets/api.png){width=80}
-![](./assets/api.png){width=80}
-![](./assets/api.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+
+<v-click at="8"><span style="position: absolute; top: 25px; left: 34px; font-family: monospace; font-size: 0.9rem; background: white; padding: 0 0.2rem; border: 1px solid red;">v2</span></v-click>
+<v-click at="8"><span style="position: absolute; top: 166px; left: 34px; font-family: monospace; font-size: 0.9rem; background: white; padding: 0 0.2rem; border: 1px solid red;">v2</span></v-click>
+<v-click at="8"><span style="position: absolute; top: 237px; left: 34px; font-family: monospace; font-size: 0.9rem; background: white; padding: 0 0.2rem; border: 1px solid red;">v2</span></v-click>
 
 </div>
 
-![](./assets/docusaurus.png){v-click width=120 .center style="margin-left: -120px; margin-top: 120px; rotate: 3deg"}
-![](./assets/webflow.png){v-click width=120 style="position: absolute; top: -30px; right: -40px; rotate: -20deg"}
-![](./assets/vercel.png){v-click width=100 style="position: absolute; bottom: 40px; right: 140px;"}
+![](./assets/docusaurus.png){v-click width=160 .center style="margin-left: -120px; margin-top: 120px; rotate: 3deg"}
+![](./assets/webflow.png){v-click width=160 style="position: absolute; top: -30px; right: -40px; rotate: -20deg"}
+![](./assets/vercel.png){v-click width=140 style="position: absolute; bottom: 40px; right: 140px;"}
+![](./assets/remix.png){v-click width=180 style="position: absolute; top: -20px; right: -20px; rotate: -10deg"}
+
+<div v-click style="position: absolute; display: block; top: -120px; right: 340px; rotate: 102deg;">
+
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+![](./assets/go.png){width=80}
+
+</div>
 
 <!--
 
@@ -96,14 +112,35 @@ It's a front door, but it's a fragile one.
 -->
 
 ---
-transition: slide-up
----
 
-**TK TK TK TK**
+![](./assets/ngrok.png){width=220 .center style="margin-top: -200px;"}
+
+<div style="position: absolute; display: flex; width: 400px; flex-flow: wrap; bottom: 0; left: 20px;">
+<img src="./assets/k8s.png" style="position: absolute; top: -145px; left: 140px; width: 140px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+<img src="./assets/go.png" style="width: 80px;" />
+</div>
+
+<div style="position: absolute; display: flex; align-items: center; justify-content: space-between; width: 400px; flex-flow: wrap; bottom: 20px; right: 60px;">
+<img src="./assets/docusaurus.png" style="width: 160px;" />
+<img src="./assets/webflow.png" style="width: 160px;" />
+<img src="./assets/vercel.png" style="width: 120px; height: 120px;" />
+<img src="./assets/remix.png" style="width: 180px;" />
+</div>
 
 <!--
 
-An API gateway brings order to that chaos.
+1. An API gateway brings order to that chaos.
 
 -->
 
@@ -328,7 +365,7 @@ dimensions as much as possible.
 transition: slide-up
 ---
 
-# Build
+# Level 1: Build
 
 **You see the value of API gateways can bring to your platform and are ready to
 build a solid foundation for managing API traffic and treating APIs as
@@ -366,7 +403,10 @@ layout: quote
 ---
 
 **Failure state**: "Our routing is a labyrinth and we're still hardcoding auth.
-Couldn't we just use a load balancer instead?"
+Can we go back in time to the load balancer days? Is it going to be like this
+forever??"
+
+![](./assets/this-is-fine.jpg){width=800 .center v-click}
 
 <!--
 
@@ -378,7 +418,7 @@ Couldn't we just use a load balancer instead?"
 transition: slide-up
 ---
 
-# Operate
+# Level 2: Operate
 
 **You're over ad-hoc changes and are ready to embrace a culture of automation,
 which in turn gets both best pratices but your first taste of governance.**
@@ -388,9 +428,9 @@ which in turn gets both best pratices but your first taste of governance.**
 |    |    |
 | -- | -- |
 | Deployment & automation | Gateway configs are controlled via IaC and deployed with standardized tooling or GitOps |
-| Routing & availability | Weighted traffic splitting for A/B, blue/green, canary deploys; dynamic routing  |
+| Routing & availability | DDoS protection, global load balancing, weighted traffic splitting for blue/green, canary deploys |
 | AuthN+AuthZ+security | Support for JWTs or OAuth2, centrally managed and provisioned |
-| Traffic management | Per-service and per-client rate limits |
+| Traffic management | Per-service and per-client rate limits; feature-flagging and A/B testing methods |
 | Observability & debugging | Structured logs ingested into a single platform (stretch goal for distributed tracing!) |
 | Developer experience | Self-service internal API registry for what does (or can) live behind the API gateway |
 | Governance | Certain policies (AuthN/Z, logging, rate limiting) standardized across all APIs |
@@ -418,11 +458,13 @@ layout: quote
 **Failure state**: “Every change requires a Slack war, a handful of Linear
 tickets, and a few days from everyone’s life.” 
 
+![](./assets/tickets.png){width=600 .center v-click}
+
 ---
 transition: slide-up
 ---
 
-# Scale
+# Level 3: Scale
 
 **You're ready to stop fighting fires and build for distributed, multi-region
 (maybe multi-cloud?), and multi-team usage.**
@@ -432,7 +474,7 @@ transition: slide-up
 |    |    |
 | -- | -- |
 | Deployment & automation | Dynamic API gateway configurations via K8s operators |
-| Routing & availability | Multi-region deployments with failover, DDoS protection, global load balancing |
+| Routing & availability | Multi-region deployments with failover; round-robin/latency-based/sticky load balancing |
 | AuthN+AuthZ+security | Fine-grained access control per API and mTLS wherever relevant |
 | Traffic management | Per-region and per-tenant limits plus dynamic throttling based on load or error (circuit breakers) |
 | Observability & debugging | Centralized API monitoring and anomaly detection to help developers with debugging |
@@ -463,11 +505,13 @@ layout: quote
 **Failure state**: “This is _our_ platform. It works. It's beautiful! Its highly
 available and properly governed and fully automated—*WAIT DON'T TOUCH THAT*—”
 
+![](./assets/fra-gee-lay.gif){width=600 .center v-click}
+
 ---
 transition: slide-up
 ---
 
-# Improve
+# Level 4: Improve
 
 **You're done with ticket-based development and bottlenecking your
 peers&mdash;time to become an enabler for self-service (without things going all
@@ -478,7 +522,7 @@ wild west on you).**
 |    |    |
 | -- | -- |
 | Deployment & automation | Developers define APIs and gateways all the way to production all by their lonesome! |
-| Routing & availability | Dynamic routing to support new or changing APIs within your internal platform |
+| Routing & availability | Dynamic routing to support new or changing APIs; custom load balancing (PEWMA+weighting, proximity+load) |
 | AuthN+AuthZ+security | Security teams define auth under policy-as-code for developers to self-service within compliance boundaries |
 | Traffic management | Per-service blocks (geo, IPs), limits, and breakers are developer-defined and composed after global policies |
 | Observability & debugging | Debugging gets easier with inspection and replay tools that work in dev/stage/prod |
@@ -508,11 +552,13 @@ layout: quote
 
 **Failure state**: "We built a developer platform... hope you like it?"
 
+![](./assets/puss-in-boots.jpg){width=600 .center v-click}
+
 ---
 transition: slide-up
 ---
 
-# Adapt
+# Level 5: Adapt
 
 **You're actively supporting emerging patterns while sticking to a long-term API
 strategy... and not overcomplicating your architecture without a clear ROI.**
@@ -522,7 +568,7 @@ strategy... and not overcomplicating your architecture without a clear ROI.**
 |    |    |
 | -- | -- |
 | Deployment & automation | Gateways are policy-driven, dynamic, aware of changes to topology/workload, and autonomous |
-| Routing & availability | Routing gets fully dynamic to shift traffic to different clusters on latency/health/cost  |
+| Routing & availability | Routing/LB gets fully dynamic based on request hedging, slow starts, server metrics (ORCA standard) |
 | AuthN+AuthZ+security | API access isn't just on (nice token! nice cert!) or off, but based on user behavior and threat intelligence  |
 | Traffic management | Limits of all types are auto-adjusted based on workload patterns and predictive analytics |
 | Observability & debugging | AI root cause analysis identifies and mitigates service failures as logged by the gateway |
@@ -553,7 +599,7 @@ layout: quote
 **Failure(?) state**: "Our architecture diagram looks like we're finally getting
 really close to figuring out who Pepe Silvia is."
 
-![](./assets/pepe-silvia.jpg){width=800 .center v-click}
+![](./assets/pepe-silvia.jpg){width=600 .center v-click}
 
 <!--
 
@@ -605,12 +651,37 @@ You can also read the model in a more human-readable format at `api-gateway-matu
 
 </v-click>
 
+<div v-click style="
+    position: absolute; 
+    bottom: 20px; 
+    right: 100px;
+    border: 1px solid black;
+    rotate: 2deg;
+">
+
+```
+on_http_request:
+  - actions:
+      - type: bye-github-pages
+        config:
+          source: https://github.com/joelhans/api-gateway-maturity-model/README.md
+          theme: hotdog-party
+```
+
+</div>
+
 <!--
 
 I include this specifically for a colleague in my past who very kindly always
 told me how much she hates this kinds of endings.
 
 -->
+
+<style>
+.slidev-code-wrapper {
+    margin: 0 !important;
+}
+</style>
 
 ---
 transition: fade
