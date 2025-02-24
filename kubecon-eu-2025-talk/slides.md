@@ -337,7 +337,9 @@ estimates of progress_ <span style="display: block; position: absolute; font-siz
    if you're creating your own API gateway, go read some engineering blogs from
    Uber or Tinder.
 
-3. I want this to be (at least for now) simple.
+3. I want this to be (at least for now) simple. That means something you can
+   actually read, self-identify, and implement—not need a professional services
+   team to do that for you.
 
 -->
 
@@ -401,12 +403,12 @@ products.**
 
 |    |    |
 | -- | -- |
-| Deployment & automation | Deployments and configuration changes all happen manually in a ticket-driven process |
+| Deployment & automation | Deployments and configuration changes all happen manually in a ticket-driven process or click ops |
 | Routing & availability | Static routing to upstreams with manual failover via a mix of basic ingress and API gateway |
 | AuthN+AuthZ+security | Relies on API keys and Basic Auth, some handled at the app/service layer instead of the gateway |
 | Traffic management | Basic rate limits applied at the API gateway to prevent abuse and ensure fairness |
 | Observability & debugging | Basic logs (response types/times/errors) collected at both pod and gateway, followed by manual debugging |
-| Developer experience | Developers rely on DevOps/infra team to provision API deployments |
+| Developer experience | Developers rely on DevOps/infra team to provision API deployments; little to no documentation |
 | Governance | Security policies manually enforced (perhaps inconsistently) during (perhaps infrequent) audits |
 
 </div>
@@ -469,7 +471,7 @@ which in turn gets both best pratices but your first taste of governance.**
 
 2. You take your first steps to apply those essential policies like auth
    across all your APIs with a single front door that fans out to everything
-   else.
+   else with the developers being none the wiser.
 
 3. You're starting to use more native K8s tooling to configure your gateways and
    make it all management. Does the word 'operator' ring a bell for anyone?
@@ -499,11 +501,11 @@ transition: slide-up
 
 |    |    |
 | -- | -- |
-| Deployment & automation | Dynamic API gateway configurations via K8s operators |
+| Deployment & automation | Native technologies fully in use—K8s operators and CI/CD for multi-environment deploys and best ingress |
 | Routing & availability | Multi-region deployments with failover; round-robin/latency-based/sticky load balancing |
 | AuthN+AuthZ+security | Fine-grained access control per API and mTLS wherever relevant |
 | Traffic management | Per-region and per-tenant limits plus dynamic throttling based on load or error (circuit breakers) |
-| Observability & debugging | Centralized API monitoring and anomaly detection to help developers with debugging |
+| Observability & debugging | Centralized API monitoring to make the API gateway the first step in incident response |
 | Developer experience | Teams can provision API gateways per project/function with central governance |
 | Governance | API gateway compliance enforced via CI/CD and automated policy check jobs |
 
@@ -551,8 +553,8 @@ wild west on you).**
 | Routing & availability | Dynamic routing to support new or changing APIs; custom load balancing (PEWMA+weighting, proximity+load) |
 | AuthN+AuthZ+security | Security teams define auth under policy-as-code for developers to self-service within compliance boundaries |
 | Traffic management | Per-service blocks (geo, IPs), limits, and breakers are developer-defined and composed after global policies |
-| Observability & debugging | Debugging gets easier with inspection and replay tools that work in dev/stage/prod |
-| Developer experience | Developers manage API gateway settings within policy constraints |
+| Observability & debugging | Easier debugging with inspection/replay; dashboards designed for self-service |
+| Developer experience | Templates/recipes for API development&rarr;deployment on golden paths, supported by docs |
 | Governance | Developers can take new APIs into production without tearing down all the precious compliance work! |
 
 </div>
@@ -560,14 +562,17 @@ wild west on you).**
 <!--
 
 1. This is where your role evolves completely from building for yourself to
-   building for others. For better or worse?
+   building for others. You're doing everything in your power to not be a
+   gatekeeper for others.
 
-2. You have to maintain the proper guardrails for security and compliance, but
-   also let developer layer additonal rules, not undermine or override them, for
-   their services. This is where composability makes a huge difference.
+2. Your end goal is to make your platform better than building on monoliths—you
+   give them more features built-in, more metrics, more dashboards, better error
+   handling.
 
 3. This is a big orchestration of IaC and Policy as Code that keeps people on
-   the right rails and never gets in their way.
+   the right rails and never gets in their way—composability makes a big
+   difference to allow them to build on top of your platform, not undermine or
+   override it.
 
 -->
 
@@ -597,8 +602,8 @@ strategy... and not overcomplicating your architecture without a clear ROI.**
 | Routing & availability | Routing/LB gets fully dynamic based on request hedging, slow starts, server metrics (ORCA standard) |
 | AuthN+AuthZ+security | API access isn't just on (nice token! nice cert!) or off, but based on user behavior and threat intelligence  |
 | Traffic management | Limits of all types are auto-adjusted based on workload patterns and predictive analytics |
-| Observability & debugging | AI root cause analysis identifies and mitigates service failures as logged by the gateway |
-| Developer experience | Policy goes past guardrails to actively assist devs with recommendations of best practices and optimizations |
+| Observability & debugging | Observability dashboards extend to strategic value of API gateway; RCA and remediation goes AI-driven |
+| Developer experience | Consistant API development tooling with active recommendations of best practices or improvements |
 | Governance | Compliance monitoring adjusts gateway policies in real-time based on new threats or regulatory changes |
 
 </div>
