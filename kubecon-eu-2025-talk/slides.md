@@ -45,7 +45,36 @@ FOR KUBECON
 About me: I'm Joel, and I do all things DevRel at ngrok, the universal gateway
 company. I love stories, so let me start with a short one loosely based on
 ngrok itself.
+
 -->
+
+---
+
+> Every API needs a front door, but many organizations struggle to define what
+> "done" means for their API gateway implementation. Is authentication and rate
+> limiting enough? What about multi-region failover or self-service development
+> environments?
+> 
+> In this talk, we'll build on the CNCF's Cloud Native Maturity Model to create
+> a practical framework for API gateway evolution across five key phases: Build
+> (choosing fundamentals), Operate (implementing CI/CD), Scale (mastering
+> multi-region), Improve (balancing control with velocity), and Adapt (enabling
+> advanced patterns).
+> <br />
+>
+> Through real-world examples and interactive audience polling, we'll identify
+> where most organizations get stuck and discuss concrete solutions using
+> popular tools. You'll walk away with a clear assessment of your current API
+> gateway maturity and practical tips for implementing critical capabilities
+> like GitOps workflows, nuanced rate limiting, and self-service developer
+> environments.
+
+<style>
+.slidev-layout blockquote > * {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+</style>
 
 ---
 
@@ -80,10 +109,10 @@ ngrok itself.
 
 </div>
 
-![](./assets/docusaurus.png){v-click width=160 .center style="margin-left: -120px; margin-top: 120px; rotate: 3deg"}
-![](./assets/webflow.png){v-click width=160 style="position: absolute; top: -30px; right: -40px; rotate: -20deg"}
-![](./assets/vercel.png){v-click width=140 style="position: absolute; bottom: 40px; right: 140px;"}
-![](./assets/remix.png){v-click width=180 style="position: absolute; top: -20px; right: -20px; rotate: -10deg"}
+![](./assets/docusaurus.png){v-click width=130 .center style="margin-left: -120px; margin-top: 120px; rotate: 3deg"}
+![](./assets/webflow.png){v-click width=130 style="position: absolute; top: -30px; right: -40px; rotate: -20deg"}
+![](./assets/vercel.png){v-click width=120 height=120 style="position: absolute; bottom: 40px; right: 140px;"}
+![](./assets/remix.png){v-click width=150 style="position: absolute; top: -20px; right: -20px; rotate: -10deg"}
 
 <div v-click style="position: absolute; display: block; top: -120px; right: 340px; rotate: 102deg;">
 
@@ -157,11 +186,11 @@ It's a front door, but it's a fragile one.
 <img src="./assets/go.png" style="width: 80px;" />
 </div>
 
-<div style="position: absolute; display: flex; align-items: center; justify-content: space-between; width: 400px; flex-flow: wrap; bottom: 20px; right: 60px;">
-<img src="./assets/docusaurus.png" style="width: 160px;" />
-<img src="./assets/webflow.png" style="width: 160px;" />
+<div style="position: absolute; display: flex; align-items: center; justify-content: space-between; width: 400px; gap: 20px; flex-flow: wrap; bottom: 20px; right: 60px;">
+<img src="./assets/docusaurus.png" style="width: 130px;" />
+<img src="./assets/webflow.png" style="width: 130px;" />
 <img src="./assets/vercel.png" style="width: 120px; height: 120px;" />
-<img src="./assets/remix.png" style="width: 180px;" />
+<img src="./assets/remix.png" style="width: 150px;" />
 </div>
 
 <!--
@@ -335,7 +364,7 @@ estimates of progress_ <span style="display: block; position: absolute; font-siz
 
 2. This includes cloud-specific, self-hosted, and managed gateway products, but
    if you're creating your own API gateway, go read some engineering blogs from
-   Uber or Tinder.
+   Uber or Tinder or Digital Ocean.
 
 3. I want this to be (at least for now) simple. That means something you can
    actually read, self-identify, and implement—not need a professional services
@@ -363,8 +392,12 @@ Manual → Automated → Distributed → Self-service → Intelligent and adapti
 
 <!--
 
-1. I'm trying to be a little cheeky with these, but I hope you can see the
+1. These levels come directly from CNCF's Cloud Native Maturity Model.
+
+2. I'm trying to be a little cheeky with these, but I hope you can see the
 progression from building for yourself toward building toward others.
+
+3. Then reaching a state of maturity that has all the good qualities.
 
 -->
 
@@ -386,6 +419,11 @@ transition: slide-left
 
 1. I've taken some liberties with these groups, but I want to minimize the
 dimensions as much as possible.
+
+FOR NGROK
+
+This would be a great place for feedback because it has a lot of downstream
+impact on the rest of the model.
 
 -->
 
@@ -419,7 +457,8 @@ products.**
    offloaded functions like auth, and the idea of a consistent front door isn't
    solid yet.
 
-2. Everything is kind of hard.
+2. Every capability thread is active, but not in a way that's meaningfully
+   consistent or automated.
 
 3. Kubernetes is mostly used as an infrastructure layer—think routing.
 
@@ -474,7 +513,7 @@ which in turn gets both best pratices but your first taste of governance.**
    else with the developers being none the wiser.
 
 3. You're starting to use more native K8s tooling to configure your gateways and
-   make it all management. Does the word 'operator' ring a bell for anyone?
+   make it all manageable. Does the word 'operator' ring a bell for anyone?
 
 -->
 
@@ -495,7 +534,7 @@ transition: slide-up
 # Level 3: Scale
 
 **You're ready to stop fighting fires and build for distributed, multi-region
-(maybe multi-cloud?), and multi-team usage.**
+(maybe multicloud?), and multi-team usage.**
 
 <div style="font-size:0.8rem">
 
@@ -661,7 +700,7 @@ disabled: true
 
 <v-click>
 
-This model is now an open source repository on GitHub: `joelhans/api-gateway-maturity-model`
+This model is now on GitHub: `joelhans/api-gateway-maturity-model`
 
 I've included details on how anyone can contribute and make the model better:
 
