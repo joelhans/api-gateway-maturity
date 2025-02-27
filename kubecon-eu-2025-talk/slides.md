@@ -60,7 +60,6 @@ ngrok itself.
 > (choosing fundamentals), Operate (implementing CI/CD), Scale (mastering
 > multi-region), Improve (balancing control with velocity), and Adapt (enabling
 > advanced patterns).
-> <br />
 >
 > Through real-world examples and interactive audience polling, we'll identify
 > where most organizations get stuck and discuss concrete solutions using
@@ -246,6 +245,8 @@ I’ve been asking around at ngrok, too.
 - "The API won't change underneath me."
 - "When I get paged because something is broken, it's because of a bug in my
 software and not the infrastructure breaking down. `:lolsob:`"
+- "Don't conflate maturity with quality."
+- "Wide adoption, but sometimes crusty."
 
 </v-click>
 
@@ -255,16 +256,12 @@ transition: slide-up
 
 # Maturity isn’t always a good thing.
 
-<v-click>
-
 - There's a fine line between *mature* and *legacy*.
 - Mature platforms are difficult for you to modify and others to build upon.
 - No one understands how a mature platform works anymore, whether that’s lost institutional
 knowledge or it just worked once so leave it alone.
 - Hard to steer the ship quickly if you need to do something complex... like
 multicloud (yikes).
-
-</v-click>
 
 <v-click>
 
@@ -442,7 +439,7 @@ products.**
 |    |    |
 | -- | -- |
 | Deployment & automation | Deployments and configuration changes all happen manually in a ticket-driven process or click ops |
-| Routing & availability | Static routing to upstreams with manual failover via a mix of basic ingress and API gateway |
+| Routing & availability | Static routing + load balancing to upstreams with manual failover via a mix of basic ingress and API gateway |
 | AuthN+AuthZ+security | Relies on API keys and Basic Auth, some handled at the app/service layer instead of the gateway |
 | Traffic management | Basic rate limits applied at the API gateway to prevent abuse and ensure fairness |
 | Observability & debugging | Basic logs (response types/times/errors) collected at both pod and gateway, followed by manual debugging |
@@ -495,12 +492,12 @@ which in turn gets both best pratices but your first taste of governance.**
 |    |    |
 | -- | -- |
 | Deployment & automation | Gateway configs are controlled via IaC and deployed with standardized tooling or GitOps |
-| Routing & availability | DDoS protection, global load balancing, weighted traffic splitting for blue/green, canary deploys |
+| Routing & availability | DDoS protection, global+dynamic load balancing, weighted traffic splitting for blue/green, canary deploys |
 | AuthN+AuthZ+security | Support for JWTs or OAuth2, centrally managed and provisioned |
 | Traffic management | Per-service and per-client rate limits; feature-flagging and A/B testing methods |
 | Observability & debugging | Structured logs ingested into a single platform (stretch goal for distributed tracing!) |
-| Developer experience | Self-service internal API registry for what does (or can) live behind the API gateway |
-| Governance | Certain policies (AuthN/Z, logging, rate limiting) standardized across all APIs |
+| Developer experience | Self-service internal registry via OpenAPI/Swagger to discover/understand APIs without infra/DevOps involvement |
+| Governance | Somepolicies (auth, logs, rate limits) standardized across all APIs, supported by emerging API design/style specs |
 
 </div>
 
@@ -542,7 +539,7 @@ transition: slide-up
 | -- | -- |
 | Deployment & automation | Native technologies fully in use—K8s operators and CI/CD for multi-environment deploys and best ingress |
 | Routing & availability | Multi-region deployments with failover; round-robin/latency-based/sticky load balancing |
-| AuthN+AuthZ+security | Fine-grained access control per API and mTLS wherever relevant |
+| AuthN+AuthZ+security | Fine-grained access control, multi-tenant isolation, mTLS, and clear boundaries between business domains |
 | Traffic management | Per-region and per-tenant limits plus dynamic throttling based on load or error (circuit breakers) |
 | Observability & debugging | Centralized API monitoring to make the API gateway the first step in incident response |
 | Developer experience | Teams can provision API gateways per project/function with central governance |
@@ -698,20 +695,16 @@ disabled: true
 
 # What's next?
 
-<v-click>
-
 This model is now on GitHub: `joelhans/api-gateway-maturity-model`
 
 I've included details on how anyone can contribute and make the model better:
 
-- Create issues or PRs for quick fixes
 - Flesh out the model with more depth and detail for each level and capability
 thread
+- Pitch more capability threads (while maintaining "simplicity")
 - Extend the model into decision-maker territory
 - Explore how to connect to other CNCF maturity models
 - Contribute real-world experiences to create "illustrations" for each level
-
-</v-click>
 
 <v-click>
 
@@ -747,16 +740,28 @@ on_http_request:
   - actions:
       - type: bye-github-pages
         config:
-          source: https://github.com/joelhans/api-gateway-maturity-model/README.md
-          theme: hotdog-party
+          source: https://github.com/joelhans/api-gateway-maturity-model/
+          theme: chill-snowman
 ```
 
 </div>
 
 <!--
 
-I include this specifically for a colleague in my past who very kindly always
-told me how much she hates this kinds of endings.
+FOR NGROK
+
+1. I want to take a minute to talk about why anyone here should care. Why give
+   feedback? Why make this better?
+
+   - Other than to spare the embarassment of standing on stage in London in
+     front of a bunch of disappointed Europeans?
+   - This could become some kind of assessment tool for customers who want to
+     self-identify and get guidance on what features/recipes to look into next.
+   - Or, like I was talking about with Jack yesterday, we could grab usage
+     signals and give customers reports on where they stand and could build
+     next.
+   - Maybe guides around capability threads? A walkthrough of API gateway
+     maturity on ngrok?
 
 -->
 

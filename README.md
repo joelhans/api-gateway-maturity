@@ -14,9 +14,9 @@ with velocity), and **Adapt** (enabling advanced patterns).
 This project began as a talk for [KubeCon EU
 2025](https://kccnceu2025.sched.com/event/1tx7N). The slides for the talk are
 available in the [`kubecon-eu-2025-talk/`
-folder](https://github.com/joelhans/api-gateway-maturity/tree/main/kubecon-ue-2025-talk) as a
+folder](https://github.com/joelhans/api-gateway-maturity/tree/main/kubecon-eu-2025-talk) as a
 [Slidev](https://github.com/slidevjs/slidev) project.
- 
+
 ## Methodology
 
 - Implementers first, decision-makers second.
@@ -62,7 +62,7 @@ products.**
 |    |    |
 | -- | -- |
 | Deployment & automation | Deployments and configuration changes all happen manually in a ticket-driven process |
-| Routing & availability | Static routing to upstreams with manual failover via a mix of basic ingress and API gateway |
+| Routing & availability | Static routing + load balancing to upstreams with manual failover via a mix of basic ingress and API gateway |
 | AuthN+AuthZ+security | Relies on API keys and Basic Auth, some handled at the app/service layer instead of the gateway |
 | Traffic management | Basic rate limits applied at the API gateway to prevent abuse and ensure fairness |
 | Observability & debugging | Basic logs (response types/times/errors) collected at both pod and gateway, followed by manual debugging |
@@ -81,12 +81,12 @@ which in turn gets both best pratices but your first taste of governance.**
 |    |    |
 | -- | -- |
 | Deployment & automation | Gateway configs are controlled via IaC and deployed with standardized tooling or GitOps |
-| Routing & availability | DDoS protection, global load balancing, weighted traffic splitting for blue/green, canary deploys |
+| Routing & availability | DDoS protection, global+dynamic load balancing, weighted traffic splitting for blue/green, canary deploys |
 | AuthN+AuthZ+security | Support for JWTs or OAuth2, centrally managed and provisioned |
 | Traffic management | Per-service and per-client rate limits; feature-flagging and A/B testing methods |
 | Observability & debugging | Structured logs ingested into a single platform (stretch goal for distributed tracing!) |
-| Developer experience | Self-service internal API registry for what does (or can) live behind the API gateway |
-| Governance | Certain policies (AuthN/Z, logging, rate limiting) standardized across all APIs |
+| Developer experience | Self-service internal registry via OpenAPI/Swagger to discover/understand APIs without infra/DevOps involvement |
+| Governance | Some policies (auth, logs, rate limits) standardized across all APIs, supported by emerging API design/style specs |
 
 **Failure state**: “Every change requires a Slack war, a handful of Linear
 tickets, and a few days from everyone’s life.” 
@@ -100,7 +100,7 @@ tickets, and a few days from everyone’s life.”
 | -- | -- |
 | Deployment & automation | Dynamic API gateway configurations via K8s operators |
 | Routing & availability | Multi-region deployments with failover; round-robin/latency-based/sticky load balancing |
-| AuthN+AuthZ+security | Fine-grained access control per API and mTLS wherever relevant |
+| AuthN+AuthZ+security | Fine-grained access control, multi-tenant isolation, mTLS, and clear boundaries between business domains |
 | Traffic management | Per-region and per-tenant limits plus dynamic throttling based on load or error (circuit breakers) |
 | Observability & debugging | Centralized API monitoring and anomaly detection to help developers with debugging |
 | Developer experience | Teams can provision API gateways per project/function with central governance |
@@ -182,7 +182,13 @@ which contains the model itself.
   Model](https://martinfowler.com/bliki/MaturityModel.html) 
 - Maurício Linhares: [Building DigitalOcean's API gateway: Microservices all the
   way](https://mauricio.github.io/2021/01/14/building-digitaloceans-api-gateway.html)
+- [Designing Edge Gateway, Uber’s API Lifecycle Management
+  Platform](https://www.uber.com/blog/gatewayuberapi/)
+- [The Architecture of Uber’s API
+  gateway](https://www.uber.com/blog/architecture-api-gateway/)
+- [How we built the Tinder API
+  Gateway](https://medium.com/tinder/how-we-built-the-tinder-api-gateway-831c6ca5ceca)
 
-## Deploy `api-gateway-maturity.joelhans.xyz`
+## Deploy `https://api-gateway-maturity.joelhans.xyz`
 
-TK
+
