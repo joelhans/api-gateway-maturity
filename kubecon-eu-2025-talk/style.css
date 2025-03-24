@@ -3,6 +3,10 @@
     @apply mt-4 opacity-100 mb-4;
   }
 
+  h1 + h2 {
+    @apply mt-4 mb-2;
+  }
+
   .col-left,
   .col-right {
     margin-top: auto;
@@ -20,3 +24,8 @@
     font-size: 2rem;
   }
 }
+
+div[class*="mr-14"] {
+  background-size: contain !important;
+}
+
