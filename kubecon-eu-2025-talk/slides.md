@@ -148,11 +148,96 @@ Most API gateways come with a hundred buttons you can press and things to turn
 on—maturity means knowing which to turn on first. Which problems do you try to
 solve first?
 
-ngrok is going down this path on every from every angle—both as a company
-building an API gateway, and a company dogfooding the heck out of an API
-gateway.
+-->
 
-You might think that’s why I care, but that’s not the whole story.
+---
+
+# Is this Matrix right for you?
+
+## Tech leads and architects
+
+→ "I need to make build vs. buy decisions and define an API strategy that
+scales."
+
+## Platform engineers 
+
+→ "I'm building an internal developer platform and need to define how API
+gateways fit into our developer experience."
+
+## DevOps and infrastructure engineers 
+
+→ "I want to standardized ingress and API governance without slowing devs
+down... and not making more incidents for myself."
+
+<!--
+
+Maybe you remember that I mentioned three personas in this long and painful
+story. 
+
+To reiterate, I’m really focused on the platform engineering story here.
+
+If you can ask yourself, “How does maturing my API gateway help you build an
+amazing platform for my team?” then you’re on the right track.
+
+Junior engineers might use this as roadmap of what to learn next, or API gateway
+providers might want to see where they stack up and what features to build next.
+
+-->
+
+---
+
+# Why should you care?
+
+API gateways are a core of your platform and your business. You need to:
+
+- Think critically about where you are and what you could bring to the table for
+  improvements.
+- Evaluate new technologies or what capabilities your current stack provides
+  that you haven't yet turned on.
+- Find places where you can invest time as the users of your platform—or the
+  scale of your business—demand.
+
+That requires:
+
+A way to reflect on yourself, your team, and your offering... then find ways to
+improve or figure out where you're falling behind.
+
+---
+
+# Everybody *loves* a caveat!
+
+## This model is:
+
+- Designed to help you self-assess where your API gateway implementation is
+  today and plan ahead for what's next.
+- A way to focus on solving problems and enabling value or return on investment.
+- A collaborative effort that needs contributions from *you*!
+
+## This model is not:
+
+- A way to judge your implementation or tell you how to do your job.
+- A prescriptive, "all or nothing" approach to building a mature API gateway.
+- Designed to cover *all* the cultural and technological complexity of building
+  an internal developer platform.
+- A way to pitch any particular API gateway product or service.
+
+<!--
+
+In terms of what I want you to take away from today's talk:
+
+1. First, that understand and feel the value of doing a self-assessment of your
+   API gateway as one piece of technology within a wider platform.
+
+2. Second, that you know how to and want to contribute to make this whole thing
+   better.
+
+So. Hopefully all this means you care.
+
+But why do I care?
+
+You might think it's just because ngrok is going down this path on every from
+every angle—both as a company building an API gateway, and a company dogfooding
+the heck out of an API gateway.
 
 -->
 
@@ -166,13 +251,18 @@ layout: statement
 
 <!--
 
-I was with 15 or so CTOs and tech leaders from the heaviest hitters of CNCF's end user community.
+But that’s not the whole story.
+
+I was with 15 or so CTOs and tech leaders from the heaviest hitters of CNCF's
+end user community.
 
 If you know nothing about me, you might think I was there to contribute!
 
 Nope—I was there to be quiet and listen.
 
-I was there to absorb everything they thought about CNCF's Cloud Native Maturity Model, how they thought about applying it to their organizations, especially from a platform engineering perspective.
+I was there to absorb everything they thought about CNCF's Cloud Native Maturity
+Model, how they thought about applying it to their organizations, especially
+from a platform engineering perspective.
 
 Well, if you’re not familiar…
 
@@ -240,7 +330,7 @@ I’ve been asking around at ngrok, too.
 
 - "The API won't change underneath me."
 - "When I get paged because something is broken, it's because of a bug in my
-software and not the infrastructure breaking down. :lolsob:"
+  software and not the infrastructure breaking down. :lolsob:"
 - "Don't conflate maturity with quality."
 - "Wide adoption, but sometimes crusty."
 
@@ -250,9 +340,10 @@ software and not the infrastructure breaking down. :lolsob:"
 
 - There's a fine line between *mature* and *legacy*.
 - Mature platforms are difficult for you to modify and others to build upon.
-- No one understands how a mature platform works anymore, whether that’s lost institutional knowledge or it just worked once so leave it alone.
+- No one understands how a mature platform works anymore, whether that’s lost
+  institutional knowledge or it just worked once so leave it alone.
 - Hard to steer the ship quickly if you need to do something complex... like
-multicloud (yikes).
+  multicloud (yikes).
 
 ## But it _can_ be a conscious effort to get you:
 
@@ -266,75 +357,6 @@ layout: statement
 ---
 
 ## As teams mature, they shift _away_ from building API gateways for themselves and _torward_ enabling others to ship fast without giving up control over policy and governance.
-
----
-
-# Is this Matrix right for you?
-
-## Tech leads and architects
-
-→ "I need to make build vs. buy decisions and define an API strategy that scales."
-
-## Platform engineers 
-
-→ "I'm building an internal developer platform and need to define how API gateways fit into our developer experience."
-
-## DevOps and infrastructure engineers 
-
-→ "I want to standardized ingress and API governance without slowing devs down... and not making more incidents for myself."
-
-<!--
-
-To reiterate, I’m really focused on the platform engineering story here.
-
-If you can ask yourself, “How does maturing my API gateway help you build an
-amazing platform for my team?” then you’re on the right track.
-
-Junior engineers might use this as roadmap of what to learn next, or API gateway
-providers might want to see where they stack up and what features to build next.
-
--->
-
----
-
-# Why should you care?
-
-API gateways are a core of your platform and your business. You need to:
-
-- Think critically about where you are and what you could bring to the table for improvements.
-- Evaluate new technologies or what capabilities your current stack provides that you haven't yet turned on.
-- Find places where you can invest time as the users of your platform—or the scale of your business—demand.
-
-That requires:
-
-A way to reflect on yourself, your team, and your offering... then find ways to improve or figure out where you're falling behind.
-
----
-
-# Everybody *loves* a caveat!
-
-## This model is:
-
-- Designed to help you self-assess where your API gateway implementation is today and plan ahead for what's next.
-- A way to focus on solving problems and enabling value or return on investment.
-- A collaborative effort that needs contributions from *you*!
-
-## This model is not:
-
-- A way to judge your implementation or tell you how to do your job.
-- A prescriptive, "all or nothing" approach to building a mature API gateway.
-- Designed to cover *all* the cultural and technological complexity of building an internal developer platform.
-- A way to pitch any particular API gateway product or service.
-
-<!--
-
-I’d love for you to take two feelings away from today:
-
-1. First, that understand and feel the value of doing a self-assessment of your API gateway as one piece of technology within a wider platform.
-
-2. Second, that you know how to and want to contribute to make this whole thing better.
-
--->
 
 ---
 
@@ -446,7 +468,9 @@ image: '/assets/2-person.png'
 
 # A two-person… *thing*?
 
-With a single service and two technical co-founders, it's easy to collaborate and write directly into the app layer rather than blow up the archeticture... and no need for complex automation. Manual deploys and NGINX, TYVM!
+With a single service and two technical co-founders, it's easy to collaborate
+and write directly into the app layer rather than blow up the archeticture...
+and no need for complex automation. Manual deploys and NGINX, TYVM!
 
 - ✅ Can we route API requests correctly?<br />
 - ✅ Can we prevent our backend from crashing under load?<br />
@@ -526,7 +550,11 @@ image: '/assets/50-person.png'
 
 # A 50-person startup?
 
-Now they're bigger—like hundreds of thousands of requests every day bigger. They need rate limiting and ways to figure out error rates or percentage of late responses, and the small-but-mighty infra team is getting tired of pulling logs and running queries. All this optimization requires better deployment strategies, too.
+Now they're bigger—like hundreds of thousands of requests every day bigger. They
+need rate limiting and ways to figure out error rates or percentage of late
+responses, and the small-but-mighty infra team is getting tired of pulling logs
+and running queries. All this optimization requires better deployment
+strategies, too.
 
 - ✅ Can we protect our APIs from excessive traffic or bad actors?<br />
 - ✅ Can we deploy API changes without manual intervention?<br />
@@ -613,7 +641,10 @@ image: '/assets/200-developer.png'
 
 # A 200-developer machine?
 
-They handle 10 million requests and need to stand up a new API every day. *All of a sudden, all the things are important*. They're getting DDoSed on the regular, but they're also acquiring a company in a new and scary regulatory environment!
+They handle 10 million requests and need to stand up a new API every day. *All
+of a sudden, all the things are important*. They're getting DDoSed on the
+regular, but they're also acquiring a company in a new and scary regulatory
+environment!
 
 - ✅ Are individual teams configuring and deploying APIs without causing chaos?<br />
 - ✅ Can we scale API security across multiple regions and teams?<br />
@@ -645,9 +676,11 @@ Your action items:
 
 <div style="font-size: 0.8rem;">
 
-- Take *2 minutes* here at KubeCon to rate yourself across the five problem threads. 
+- Take *2 minutes* here at KubeCon to rate yourself across the five problem
+  threads. 
   - Where are you strongest? Weakest?
-- Take the model back to your team next week and explore each thread+level to explore where you stand on the:
+- Take the model back to your team next week and explore each thread+level to
+  explore where you stand on the:
   - Problems you're solving
   - Value you deliver to your organization
   - Capabilities you've mastered
@@ -681,7 +714,10 @@ Full text + OSS project on GitHub: `joelhans/api-gateway-maturity`
 
 <!--
 
-My hope is that by making this all open for you to use and contribute to, we’re can all take a  step forward in our own maturity as people who think about, architect, implement, debug, observe, and yes, even just stand on stage talk about, our beloved API gateways.
+My hope is that by making this all open for you to use and contribute to, we’re
+can all take a  step forward in our own maturity as people who think about,
+architect, implement, debug, observe, and yes, even just stand on stage talk
+about, our beloved API gateways.
 
 -->
 
