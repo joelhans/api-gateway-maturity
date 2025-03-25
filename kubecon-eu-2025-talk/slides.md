@@ -376,11 +376,11 @@ layout: statement
 
 |    |    |
 | -- | -- | 
-| Build   | Our APIs are protected from unauthorized access, but the application of AuthN is inconsistent—sometimes at our gateway, sometimes embedded in your services. <ul><li>Static routing on paths, subdomains (+ redirects!)</li><li>Basic rate limits applied equally for abuse and fairness</li><li>Mix-and-match of API gateway and direct exposure</li></ul> |
-| Operate | Our APIs can handle high traffic safely and without overloading our upstream services, and we can handle new versions or changed paths. <ul><li>Rate limits per client/IP address and service-specific limits</li><li>Geoblocking and IP restrictions</li><li>DDoS protection and global load balancing across multiple gateway PoPs</li></ul> |
-| Scale   | We now optimize traffic for performance and availability environments, with automatic failover when things go wrong, and support more sophisticated deployments. <ul><li>Multi-environment and -region routing (multicloud?)</li><li>Weighted traffic splitting for blue/green or canaries</li><li>Load balancing strategies: latency-based, or sticky, round robin</li></ul> |
-| Improve | Teams can self-manage routing, rate limits, and other traffic management rules while staying within platform guardrails. <ul><li>Dynamic throttling based on load or error rates</li><li>Custom load balancing (PEWMA+weighting, proximity+load)</li><li>Service-specific traffic management rules composed after platform policy</li></ul> |
-| Adapt   | We can route traffic dynamically based on cost, latency, congestion, usage patterns, availability, and beyond. <ul><li>Dynamic routing based on user priority, request hedging, slow starts, or server metrics</li><li>Auto-adjusted limits based on workload patterns and predictive analytics</li><li>Multicloud load balancing based on cost and capacity</li></ul> |
+| Build   | Our APIs are protected from unauthorized access, but the application of AuthN is inconsistent—sometimes at our gateway, sometimes embedded in your services. <ul><li>Static routing on paths, subdomains (+ redirects!)</li><li>Basic rate limits (e.g. 100 req/min across all endpoints)</li><li>Simple load balancing and manual failover</li></ul> |
+| Operate | Our APIs can handle high traffic safely and without overloading our upstream services, and we can handle new versions or changed paths. <ul><li>Client- and service-specific rate limiting</li><li>Geoblocking and IP restrictions</li><li>DDoS protection and global load balancing</li></ul> |
+| Scale   | We now optimize traffic for performance and availability environments, with automatic failover when things go wrong, and support more sophisticated deployments. <ul><li>Multi-environment and -region routing (multicloud?)</li><li>Weighted traffic splitting for blue/green or canaries</li><li>Load balancing: latency-based, or sticky, round robin</li></ul> |
+| Improve | Teams can self-manage routing, rate limits, and other traffic management rules while staying within platform guardrails. <ul><li>Dynamic throttling based on load or error rates</li><li>Custom LB: PEWMA+weighting, proximity+load</li><li>Request hedging for latency optimization</li></ul> |
+| Adapt   | We can route traffic dynamically based on cost, latency, congestion, usage patterns, availability, and beyond. <ul><li>Dynamic routing for user priority or slow starts</li><li>Dynamic limits based on predicted workload patterns</li><li>Multicloud LB based on cost and capacity</li></ul> |
 
 <!--
 
@@ -425,9 +425,13 @@ With a single service and two technical co-founders, it's easy to collaborate an
 
 <!--
 
-Going deep on traffic management, followed by auth (which I’ll talk about on the next slide), is probably the most common pattern you’ll see with maturity across these five threads.
+Going deep on traffic management, followed by auth (which I’ll talk about on the
+next slide), is probably the most common pattern you’ll see with maturity across
+these five threads.
 
-Turns out it’s really important to be able to lock in ingress to your services and add in at least some way of controlling access, before you give a hoot about DX. You care about redirects more than you do policy as code.
+Turns out it’s really important to be able to lock in ingress to your services
+and add in at least some way of controlling access, before you give a hoot about
+DX. You care about redirects more than you do policy as code.
 
 -->
 
@@ -441,19 +445,24 @@ layout: statement
 
 |    |    |
 | -- | -- | 
-| Build   | Our APIs are protected from unauthorized access, but the application of AuthN is inconsistent—sometimes at our gateway, sometimes embedded in your services. <ul><li>API keys and basic authentication</li><li>Mix-and-match of gateway- vs. server-managed AuthN/AuthZ</li><li>Minimal access control—users have a key or they don’t</li></ul> |
+| Build   | Our APIs are protected from unauthorized access, but the application of AuthN is inconsistent—sometimes at our gateway, sometimes embedded in your services. <ul><li>API keys and basic authentication</li><li>Mix-and-match of AuthN/AuthZ services</li><li>TLS termination at the gateway edge</li></ul> |
 | Operate | Security enforcement is increasingly centralized at the API gateway, reducing per-service misconfigurations that lead to risk or breaches. <ul><li>JWTs or OAuth2</li><li>Centralized AuthN/AuthZ via the API gateway</li><li>Basic role-based access control</li></ul> |
-| Scale   | TWe have a unified and repeatable security model that supports multiple distributed teams.<ul><li>Geoblocking and IP reputation filtering</li><li>mTLS for service-to-service AuthN/AuthZ</li><li>Multi-tenant isolation and clear boundaries between business domains</li></ul> |
-| Improve | Developers can implement proper AuthN/AuthZ via the API gateway without writing tickets or waiting for approvals. <ul><li>Self-service policy enforcement via OPA/Kyverno</li><li>Automated API posture checks</li><li>Fine-grained access control per team or service</li></ul> |
-| Adapt   | Our API security model is adaptive and capable of preventing breaches before they happen. <ul><li>API access based on user behavior and threat intelligence (risk-based authentication)</li><li>AI-powered threat detection</li><li>Just-in-time access control</li></ul> |
+| Scale   | TWe have a unified and repeatable security model that supports multiple distributed teams.<ul><li>Geoblocking and IP reputation filtering</li><li>mTLS for service-to-service AuthN/AuthZ</li><li>Multi-tenant isolation in gateway routes</li></ul> |
+| Improve | Developers can implement proper Zero Trust fundamentals via the API gateway without writing tickets or waiting for approvals. <ul><li>Self-service policy enforcement via OPA/Kyverno</li><li>Automated API posture checks</li><li>Fine-grained access control per team or service</li></ul> |
+| Adapt   | Our API security model is adaptive and capable of preventing breaches before they happen. <ul><li>Risk-based authentication and rate limiting</li><li>AI-powered threat detection/intelligence feeds</li><li>Just-in-time access control</li></ul> |
 
 <!--
 
-Your journey starts with most essential auth functions being embedded directly into your services, which equates to inconsistency, difficulty for you trying to maintain all these systems, and more risk for vulnerabilities.
+Your journey starts with most essential auth functions being embedded directly
+into your services, which equates to inconsistency, difficulty for you trying to
+maintain all these systems, and more risk for vulnerabilities.
 
-As you mature, you increasingly use the API gateway as a single place for centralized enforcement of Zero Trust fundamentals to protect your APIs no matter who’s built or is deploying them.
+As you mature, you increasingly use the API gateway as a single place for
+centralized enforcement of Zero Trust fundamentals to protect your APIs no
+matter who’s built or is deploying them.
 
-When you standardize security at your API gateway across your whole platform, you’re not a bottleneck, but an accelerator for your dev peers.
+When you standardize security at your API gateway across your whole platform,
+you’re not a bottleneck, but an accelerator for your dev peers.
 
 -->
 
@@ -467,11 +476,11 @@ layout: statement
 
 |    |    |
 | -- | -- | 
-| Build   | We can see what our API services are doing in a deployed environment to help us identify issues. <ul><li>Basic logs (requests/responses) created by the API gateway</li><li>Error rate monitoring (5xx API errors)</li><li>Manual debugging</li></ul> |
-| Operate | We have a unified view of API health via dashboards, making troubleshooting a lot easier and helping us resolve issues faster. <ul><li>Distributed tracing with Jaeger, OpenTelemetry, etc</li><li>Structured logs</li><li>API gateway logs/events published to an observability platform alongside service metrics</li></ul> |
-| Scale   | Our API gateway is seen as the first place to look in incident response. <ul><li>Real-time incident alerting for relevant stakeholders</li><li>Unified API monitoring across clusters, regions, or cloud</li><li>Anomaly detection when APIs deviate from historical norms</li></ul> |
-| Improve | Our API gateway can react to its monitoring on its own and prevent a person from having to step in. <ul><li>Remediation runbooks that trigger automatically before alerting stakeholders</li><li>Traffic replay for debugging</li><li>Customizable API observability dashboards for specific development teams</li></ul> |
-| Adapt   | API issues are fully self-healing, minimizing the need for us (platform team) or others (API developers) to intervene manually. <ul><li>AI-driven anomaly detection and automated RCA</li><li>Automated incident response that routes traffic away from failures</li><li>Observability extends into strategic value/ROI of your entire API program</li></ul> |
+| Build   | We can see what our API services are doing in a deployed environment to help us identify issues. <ul><li>Basic logs generated at the API gateway</li><li>Error rate monitoring (5xx API errors)</li><li>Basic health check endpoints</li></ul> |
+| Operate | We have a unified view of API health via dashboards, making troubleshooting a lot easier and helping us resolve issues faster. <ul><li>Distributed tracing with Jaeger, OpenTelemetry, etc</li><li>Structured logs</li><li>Unified monitoring across multiple gateway instances</li></ul> |
+| Scale   | Our API gateway is seen as the first place to look in incident response. <ul><li>Real-time incident alerting for relevant stakeholders</li><li>Unified API monitoring across clusters/regions/clouds</li><li>Anomaly detection for traffic patterns</li></ul> |
+| Improve | Our API gateway can react to its monitoring on its own and prevent a person from having to step in, while also offering way more observability features for those who opt-in to the platform. <ul><li>Automated remediation runbooks</li><li>Editable request replay for debugging</li><li>Team-specific gateway traffic dashboards</li></ul> |
+| Adapt   | API issues are fully self-healing, minimizing the need for us (platform team) or others (API developers) to intervene manually. <ul><li>AI-driven anomaly detection and automated RCA</li><li>Automated incident response and rerouting</li><li>Business outcome correlation with ingress patterns</li></ul> |
 
 <!--
 
@@ -504,11 +513,11 @@ layout: statement
 
 |    |    |
 | -- | -- | 
-| Build   | API configurations are managed with manual changes, with developers cobbling together ways to ship to prod. It works, but it’s slow. <ul><li>API configs in YAML</li><li>Developers rely on ticket-based development and DevOps/infra team</li><li>Little to no documentation</li></ul> |
-| Operate | API changes are automated, clearing our Linear/Jira/etc board of tickets and freeing up our team’s engineering time. <ul><li>Standardized API definitions</li><li>Management/deployment via GitOps, IaC, and CI/CD pipelines</li><li>Basic API catalog to discover/understand the landscape without manual exploration</li></ul> |
-| Scale   | API management (via automation and IaC) helps us manage APIs at scale across multiple clusters, environments, and growing teams. <ul><li>Dev teams can provision new API gateways per project/function</li><li>Support for multiple deployment strategies (K8s, cloud, hybrid, multicloud)</li><li></li></ul> |
-| Improve | Developers can self-service isolated API gateway configurations while we (now a platform team!) enforce policy, reducing operational overhead on a golden path. <ul><li>Templates/recipes for API development+deployment on golden paths</li><li>Rich documentation of API best practices</li><li>Extensive API catalog/developer portal</li></ul> |
-| Adapt   | We give developers more than guardrails—we support them with best practices on designing and deploying APIs. <ul><li>Support for advanced customization and plugins to support every use case/customer</li><li>AI-driven recommendations and improvements as developers work</li><li>API lifecycle automation to deprecate old services based on usage patterns</li></ul> |
+| Build   | API configurations are managed with manual changes, with developers cobbling together ways to ship to prod. It works, but it’s slow. <ul><li>API configs in YAML</li><li>Ticket-based (or YOLO) configuration changes</li><li>Little to no documentation</li></ul> |
+| Operate | API changes are automated, clearing our Linear/Jira/etc board of tickets and freeing up our team’s engineering time. <ul><li>Standardized API definitions</li><li>Config and deploy with GitOps, IaC, and CI/CD</li><li>Basic API catalog derived from routing topology</li></ul> |
+| Scale   | API management (via automation and IaC) helps us manage APIs at scale across multiple clusters, environments, and growing teams. <ul><li>Devs provision new gateways per project/function</li><li>Many deployment options (K8s, hybrid, multicloud)</li><li>API versioning strategies at the API gateway</li></ul> |
+| Improve | Developers can self-service isolated API gateway configurations while we (now a platform team!) enforce policy, reducing operational overhead on a golden path. <ul><li>Golden path templates/recipes for gateway patterns</li><li>Rich documentation of gateway best practices</li><li>Extensive API catalog/developer portal</li></ul> |
+| Adapt   | We give developers more than guardrails—we support them with best practices on designing and deploying APIs. <ul><li>Support for advanced customization and plugins</li><li>Shift-lefted, AI-driven gateway recommendations</li><li>Automatic detection of unused/deprecated services</li></ul> |
 
 <!--
 
@@ -539,11 +548,11 @@ layout: statement
 
 |    |    |
 | -- | -- | 
-| Build   | APIs meet basic security and compliance standards, but inconsistently, leading to risk and ad-hoc responses. <ul><li>No enforced API standards</li><li>Infrequent/ad-hoc audits of security rules and applications</li><li>No compliance logging from API gateway</li></ul> |
-| Operate | We enforce standards across multiple APIs and teams to reduce the risk of being non-compliant. <ul><li>Basic API lifecycle management processes, like versioning</li><li>Standardized API security policies</li><li>Semi-regular audits of API gateway policy enforcement</li></ul> |
-| Scale   | Governance of API gateways scales across teams and cloud environments without blocking development velocity. <ul><li>Policy-as-code practices applied via CI/CD and automated policy check jobs</li><li>Standard API design/style specifications applied to all new services</li><li>API governance covers multi-region and multicloud</li></ul> |
-| Improve | Anyone can configure APIs within a predefined, platform-wide governance model. <ul><li>Role-based API management where teams can self-service rules for their domain</li><li>Fine-grained access control for API changes (e.g. rate limits vs. authentication)</li><li>API audits and change tracking for simpler compliance reviews</li></ul> |
-| Adapt   | Our compliance is now automated and capable of adapting to new regulations or security risks dynamically. <ul><li>AI-driven compliance monitoring</li><li>Continuous evaluation of API services for risk and compliance</li><li>Automatic security policy updates based on new threats or regulatory changes</li></ul> |
+| Build   | APIs meet basic security and compliance standards, but inconsistently, leading to risk and ad-hoc responses. <ul><li>No enforced API standards at the gateway</li><li>Infrequent/ad-hoc audits of gateway compliance</li><li>Manual configuration reviews</li></ul> |
+| Operate | We enforce standards across multiple APIs and teams to reduce the risk of being non-compliant. <ul><li>Basic API lifecycle management (e.g. versioning)</li><li>Standardized API security policies</li><li>Semi-regular scanning of API gateway policy</li></ul> |
+| Scale   | Governance of API gateways scales across teams and cloud environments without blocking development velocity. <ul><li>Configs controlled with policy-as-code and CI/CD</li><li>Traffic auditing across multiple environments</li><li>Gateway-enforced data sovereignty</li></ul> |
+| Improve | Anyone can configure APIs within a predefined, platform-wide governance model. <ul><li>Role- or team-based API gateway management</li><li>Fine-grained access control for config changes</li><li>Configuration change tracking for compliance</li></ul> |
+| Adapt   | Our compliance is now automated and capable of adapting to new regulations or security risks dynamically. <ul><li>AI-driven, continuous compliance monitoring</li><li>Threat-based security policy updates</li><li>Automatic policy updates for regulatory changes</li></ul> |
 
 <!--
 
