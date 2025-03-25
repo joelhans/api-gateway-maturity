@@ -102,31 +102,55 @@ ngrok itself.
 
 <!--
 
-It starts with just a simple Python app. It's a one-page marketing site and the rest of the backend.
+It starts with just a simple Python app. It's a one-page marketing site and the
+rest of the backend.
 
-Then at some point you need to slap NGINX on it. You need that reverse proxy, and NGINX is free and trusted.
-
-Then you decide, wait, let's go Kubernetes. Slap that on there. Nice easy project.
+Then at some point you need to slap NGINX on it. You need that reverse proxy,
+and NGINX is free and trusted.
 
 Oh look, some new Go-based API services want to sneak in behind your proxy.
 
-And there's Docusaurus, asking for a little space for your new developer documentation. Slap that on there and get the routing wired up.
+Then you decide, wait, let's go Kubernetes. Slap that on there. Nice easy
+project.
 
-Then a few of your APIs need to get moved from here to there, requiring redirects and new version numbers, which is another thing to worry about. They become moving targets.
+Then you need start proxy_pass-ing traffic and editing Host headers to get
+traffic to external services, and since you want everything to work from one
+hostname, your ingress starts getting a lot tricker. 
 
-What's that? Webflow peeking in? Then there’s some apps hosted on Vercel, or maybe Remix is coming to gobble up Webflow.
+And there's Docusaurus, asking for a little space for your new developer
+documentation.
+
+Then a few of your APIs need to get moved from here to there, requiring
+redirects and new version numbers, which is another thing to worry about. They
+become moving targets.
+
+What's that? Webflow peeking in? Then there’s some more apps hosted on Vercel, or
+maybe Remix is coming to gobble up Webflow. More proxying.
 
 Then you have even more API services barging in…
 
-I'm sure many of you have been in this situation before. This is a story of people who have no way to self-assess themselves and figure out how to take even a single step away from this chaos to a well-managed, scalable, and developer-friendly API platform. A more mature platform.
+I'm sure many of you have been in this situation before. This is a story of
+people who have no way to self-assess themselves and figure out how to take even
+a single step away from this chaos to a well-managed, scalable, and
+developer-friendly API platform. A more mature platform.
 
-If you’re a CTO or engineering leader, you don’t want this happening under your watch. If you’re platform engineer, the path isn’t so much golden as it is covered in a rockslide. If you’re a DevOps or infrastructure engineer, you’re that this is fine dog until the day you hang up your hat.
+If you’re a CTO or engineering leader, you don’t want this happening under your
+watch. If you’re platform engineer, the path isn’t so much golden as it is
+covered in a rockslide. If you’re a DevOps or infrastructure engineer, you’re
+that this is fine dog until the day you hang up your hat.
 
-In some cases, you might have an API gateway in place—you know, that front door to all your APIs and a way to offload non-functional requirements AuthN/AuthZ, load balancing, observability, rate limiting, failover, and much more from your individual services. A control plane.
+In some cases, you might have an API gateway in place—you know, that front door
+to all your APIs and a way to offload non-functional requirements AuthN/AuthZ,
+load balancing, observability, rate limiting, failover, and much more from your
+individual services. A control plane.
 
-Most API gateways come with a hundred buttons you can press and things to turn on—maturity means knowing which to turn on first. Which problems do you try to solve first?
+Most API gateways come with a hundred buttons you can press and things to turn
+on—maturity means knowing which to turn on first. Which problems do you try to
+solve first?
 
-ngrok is going down this path on every from every angle—both as a company building an API gateway, and a company dogfooding the heck out of an API gateway.
+ngrok is going down this path on every from every angle—both as a company
+building an API gateway, and a company dogfooding the heck out of an API
+gateway.
 
 You might think that’s why I care, but that’s not the whole story.
 
@@ -194,11 +218,14 @@ What about tactical decisions about a *single* technology?
 
 <!--
 
-Back in Detroit, these leaders loved having a roadmap to look forward to, but the feedback that really resonated with me was:
+Back in Detroit, these leaders loved having a roadmap to look forward to, but
+the feedback that really resonated with me was:
 
-They didn’t know how to apply this model to how they might get better about a single technological “thread” of the CNCF landscape.
+They didn’t know how to apply this model to how they might get better about a
+single technological “thread” of the CNCF landscape.
 
-The CNCF model gives us the forest, but this API gateway maturity matrix helps you navigate a critical tree within it.
+The CNCF model gives us the forest, but this API gateway maturity matrix helps
+you navigate a critical tree within it.
 
 -->
 
@@ -242,7 +269,7 @@ layout: statement
 
 ---
 
-# Is this matrix right for you?
+# Is this Matrix right for you?
 
 ## Tech leads and architects
 
@@ -260,9 +287,11 @@ layout: statement
 
 To reiterate, I’m really focused on the platform engineering story here.
 
-If you can ask yourself, “How does maturing my API gateway help you build an amazing platform for my team?” then you’re on the right track.
+If you can ask yourself, “How does maturing my API gateway help you build an
+amazing platform for my team?” then you’re on the right track.
 
-Junior engineers might use this as roadmap of what to learn next, or API gateway providers might want to see where they stack up and what features to build next.
+Junior engineers might use this as roadmap of what to learn next, or API gateway
+providers might want to see where they stack up and what features to build next.
 
 -->
 
