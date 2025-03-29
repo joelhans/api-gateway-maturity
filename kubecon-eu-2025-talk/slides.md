@@ -33,18 +33,6 @@ About me: I'm Joel, and I do all things DevRel at ngrok, the universal gateway
 company. I love stories, so let me start with a short one loosely based on
 ngrok itself.
 
-In this talk, I'm hoping to leave you wanting two things depending on who you
-are:
-
-If you're using an API gateway, I want you to feel like you can self-assess the
-maturity of how you've adopted what's available in your API gateway.
-
-As a builder of an API gateway—I know you're out there—you can think about the
-user journey and ergonomics of how your product could better lead them down your
-API gateway path.
-
-And, either way, I'd love for this to start up a much larger conversation around
-contribution.
 
 -->
 
@@ -115,51 +103,49 @@ contribution.
 
 <!--
 
-It starts with just a simple Python app. It's a one-page marketing site and the
-rest of the backend.
+It starts with a little baby Kubernetes cluster.
 
-Then at some point you need to slap NGINX on it. You need that reverse proxy,
-and NGINX is free and trusted.
+- Then there's a Python app, a marketing site, and maybe an API service or two
+  in Go.
+- Then you get more services.
+- Then you hire a marketing team that wanted to manage blog content, on the
+  `/blog` path, on a different service.
+- Then comes an internal project to revamp developer docs without having to
+  rewrite the whole site.
+- Then you need to move few APIs around with redirects or new versions
+- Then everything just becomes a moving target.
+- Then trying to take back control of all this, and make it work better feels
+  insurmountable.
 
-Oh look, some new Go-based API services want to sneak in behind your proxy.
-
-Then you decide, wait, let's go Kubernetes. Slap that on there. Nice easy
-project.
-
-Then you need start proxy_pass-ing traffic and editing Host headers to get
-traffic to external services, and since you want everything to work from one
-hostname, your ingress starts getting a lot tricker. 
-
-And there's Docusaurus, asking for a little space for your new developer
-documentation.
-
-Then a few of your APIs need to get moved from here to there, requiring
-redirects and new version numbers, which is another thing to worry about. They
-become moving targets.
-
-What's that? Webflow peeking in? Then there’s some more apps hosted on Vercel, or
-maybe Remix is coming to gobble up Webflow. More proxying.
-
-Then you have even more API services barging in…
-
-I'm sure many of you have been in this situation before. This is a story of
-people who have no way to self-assess themselves and figure out how to take even
-a single step away from this chaos to a well-managed, scalable, and
-developer-friendly API platform. A more mature platform.
+I'm sure some of you have found yourself in this story before.
 
 If you’re a CTO or engineering leader, you don’t want this happening under your
 watch. If you’re platform engineer, the path isn’t so much golden as it is
 covered in a rockslide. If you’re a DevOps or infrastructure engineer, you’re
 that this is fine dog until the day you hang up your hat.
 
-In some cases, you might have an API gateway in place—you know, that front door
-to all your APIs and a way to offload non-functional requirements AuthN/AuthZ,
-load balancing, observability, rate limiting, failover, and much more from your
-individual services. A control plane.
+And it's a story of people who have no way to self-assess themselves and figure
+out how to take even a single step away from this chaos to a well-managed,
+scalable, and developer-friendly API platform. A more mature platform.
 
-Most API gateways come with a hundred buttons you can press and things to turn
-on—maturity means knowing which to turn on first. Which problems do you try to
-solve first?
+With a good API gateway—you know, that front door for all your APIs and the way
+to offload non-functional requirements—finding a way to solve these problems
+doesn't have to be hard.
+
+The harder part is knowing which of the hundred buttons you should press next.
+Can you see *the next* high ROI thing to turn on to get more adoption of your
+platform and improve your internal processes?
+
+So, let me ask a question:
+
+- Who has found themselves in this story before?
+- Who picked out an API gateway and got super excited about all the cool things
+  you could play around with?
+- Who actually turned on every feature?
+
+The whole point of this Matrix is to tell you that putting off certain features
+is actually okay. Maybe it's even for the best. Maybe, together, we can figure
+out what your next best thing actually is.
 
 -->
 
@@ -187,14 +173,19 @@ enabling others with self-serfice... and not making more incidents to deal with.
 Maybe you remember that I mentioned three personas in this long and painful
 story. 
 
-To reiterate, I’m really focused on the platform engineering story here. How you
-adopt features, for what reasons, and how that improves your internal processes.
+In this talk, I'm hoping to leave you wanting two things depending on who you
+are:
 
-If you can ask yourself, “How does maturing my API gateway help you build an
-amazing platform for my team?” then you’re on the right track.
+If you're using an API gateway and you fit one of these personas, I want you to
+feel like you can self-assess the maturity of how you've adopted what's
+available in your API gateway and where you can find the most ROI next.
 
-Junior engineers might use this as roadmap of what to learn next, or API gateway
-providers might want to see where they stack up and what features to build next.
+As a builder of an API gateway—I know you're out there—you can think about the
+user journey and ergonomics of how your product could better lead them down your
+API gateway path.
+
+And, either way, I'd love for this to start up a much larger conversation around
+contribution.
 
 -->
 
@@ -399,9 +390,12 @@ layout: statement
 
 # Where do you think you stand?
 
-- 🚀 "Our API gateway is in good shape."
-- 🏗️ "We're duct-taping stuff together."
-- 🔥 "All our config is copy-pasted from Stack Overflow. Send help."
+- 🧱 "I think there's something in front of my APIs… but I'm not totally sure
+  what it’s doing."
+- 🔒 "Building on the API gateway involves lots of tickets and paying someone
+  still remembers how it works."
+- 🚀 "I'm just here to validate how much further along we are than everyone
+  else." 
 
 <!--
 
@@ -436,7 +430,7 @@ Let’s start with a broad look at how API gateways transform over these five Le
 
 # Five problems to solve (capability threads)
 
-- Traffic management & reliability
+- Traffic management
 - Authentication & security
 - Observability & debugging
 - Developer/team experience
@@ -471,15 +465,15 @@ that culture is.
 layout: statement
 ---
 
-# Traffic management & reliability
+# Traffic management
 
 ---
 
 |    |    |
 | -- | -- | 
 | Build   | Our APIs are protected from unauthorized access, but the application of AuthN is inconsistent—sometimes at our gateway, sometimes embedded in your services. <ul><li>Static routing on paths, subdomains, etc</li><li>Hardcoded rewrites and redirects</li><li>Simple load balancing and manual failover</li></ul> |
-| Operate | Our APIs can handle high traffic safely and without overloading our upstream services, and we can handle new versions or changed paths. <ul><li>Basic per-client rate limits for fairness and abuse</li><li>Geoblocking and IP restrictions</li><li>DDoS protection and global load balancing</li></ul> |
-| Scale   | We now optimize traffic for performance and availability environments, with automatic failover when things go wrong, and support more sophisticated deployments. <ul><li>Multi-environment and -region routing (multicloud?)</li><li>Weighted traffic splitting for blue/green or canaries</li><li>Load balancing: latency-based, or sticky, round robin</li></ul> |
+| Operate | We centrally manage, configure, and turn on features like routing on behalf of development teams, some driven by their asks and some driven by protecting our infrastructure. <ul><li>Basic per-client rate limits for fairness and abuse</li><li>Geoblocking and IP restrictions</li><li>DDoS protection and global load balancing</li></ul> |
+| Scale   | Our APIs can handle high traffic safely and without overloading our upstream services, and we're optimizing for performance and availability... and automatically fail over when things go wrong. <ul><li>Multi-environment and -region routing (multicloud?)</li><li>Weighted traffic splitting for blue/green or canaries</li><li>Load balancing: latency-based, or sticky, round robin</li></ul> |
 | Improve | Teams can self-manage routing, rate limits, and other traffic management rules while staying within platform guardrails. <ul><li>Dynamic throttling based on load or error rates</li><li>Custom LB: PEWMA+weighting, proximity+load</li><li>Request hedging for latency optimization</li></ul> |
 | Adapt   | We can route traffic dynamically based on cost, latency, congestion, usage patterns, availability, and beyond. <ul><li>Dynamic routing for user priority or slow starts</li><li>Dynamic limits based on predicted workload patterns</li><li>Multicloud LB based on cost and capacity</li></ul> |
 
@@ -515,7 +509,8 @@ image: '/assets/2-person.png'
 
 With a single service and two technical co-founders, it's easy to collaborate
 and write directly into the app layer rather than blow up the archeticture...
-and no need for complex automation. Manual deploys and NGINX, TYVM!
+and no need for complex automation. Manual deploys and a basic API gateway,
+TYVM!
 
 - ✅ Can we route API requests correctly?<br />
 - ✅ Do we know if things crash because we have basic monitoring?<br />
@@ -552,7 +547,7 @@ layout: statement
 | Operate | Security enforcement is increasingly centralized at the API gateway, reducing per-service misconfigurations that lead to risk or breaches. <ul><li>JWTs or OAuth2</li><li>Centralized AuthN/AuthZ via the API gateway</li><li>Basic role-based access control</li></ul> |
 | Scale   | Our API gateway is a central hardening point, and we have a unified and repeatable security model that supports multiple distributed teams.<ul><li>Geoblocking and IP reputation filtering</li><li>mTLS for service-to-service AuthN/AuthZ</li><li>Multi-tenant isolation in gateway routes</li></ul> |
 | Improve | Developers can implement new Zero Trust fundamentals via the API gateway without writing tickets or waiting for approvals. <ul><li>Self-service policy enforcement via OPA/Kyverno</li><li>Automated API posture checks</li><li>Fine-grained access control per team or service</li></ul> |
-| Adapt   | Our API security model is adaptive and capable of preventing breaches before they happen. <ul><li>Risk-based authentication and rate limiting</li><li>AI-powered threat detection/intelligence feeds</li><li>Just-in-time access control</li></ul> |
+| Adapt   | Our API security model is adaptive and capable of preventing breaches before they happen. <ul><li>Risk-based authentication and rate limiting</li><li>Threat detection/intelligence feeds</li><li>Just-in-time access control</li></ul> |
 
 <!--
 
@@ -593,10 +588,10 @@ layout: statement
 
 |    |    |
 | -- | -- | 
-| Build   | We can see what our API services are doing in a deployed environment to help us identify issues. <ul><li>Basic logs generated at the API gateway</li><li>Error rate monitoring (5xx API errors)</li><li>Basic health check endpoints</li></ul> |
-| Operate | We have a unified view of API health via dashboards, making troubleshooting a lot easier and helping us resolve issues faster. <ul><li>Distributed tracing with Jaeger, OpenTelemetry, etc</li><li>Structured logs</li><li>Unified monitoring across multiple gateway instances</li></ul> |
-| Scale   | Our API gateway is seen as the first place to look in incident response. <ul><li>Real-time incident alerting for relevant stakeholders</li><li>Unified API monitoring across clusters/regions/clouds</li><li>Anomaly detection for traffic patterns</li></ul> |
-| Improve | Our API gateway can react to its monitoring on its own and prevent a person from having to step in, while also offering way more observability features for those who opt-in to the platform. <ul><li>Automated remediation runbooks</li><li>Editable request replay for debugging</li><li>Team-specific gateway traffic dashboards</li></ul> |
+| Build   | We can see *what* our API services are doing, mostly via logs, in a deployed environment to help us identify issues. <ul><li>Basic logs generated at the API gateway</li><li>Error rate monitoring (5xx API errors)</li><li>Basic health check endpoints</li></ul> |
+| Operate | We have a unified view *how* our APIs are doing via dashboards, making troubleshooting a lot easier and helping us resolve issues faster. <ul><li>Distributed tracing with Jaeger, OpenTelemetry, etc</li><li>Structured logs</li><li>Unified monitoring for one gateway+environment</li></ul> |
+| Scale   | Our API gateway is seen as the first place to look (and often to blame!) when we're monitoring the API landscape or developers need to do distributed debugging. <ul><li>Unified monitoring across clusters/regions/clouds</li><li>Tracing to help find distributed bottlenecks</li><li><Real-time incident alerting for relevant stakeholders</li></ul> |
+| Improve | Other teams can extend the API gateway to add their own metrics or tracing based on new requirements without having to change the main API surface beneath everyone's feet. <ul><li>Automated remediation runbooks</li><li>Editable request replay for debugging</li><li>Team-specific gateway traffic dashboards</li></ul> |
 | Adapt   | API issues are fully self-healing, minimizing the need for us (platform team) or others (API developers) to intervene manually. <ul><li>AI-driven anomaly detection and automated RCA</li><li>Automated incident response and rerouting</li><li>Business outcome correlation with ingress patterns</li></ul> |
 
 <!--
@@ -605,11 +600,18 @@ The API gateway starts as a data source, but quickly becomes the go-to place for
 debugging. If all external requests are coming in through the API gateway, what
 better place to start looking when things go wrong?
 
-Observability is a great place to make your platform the feature-rich golden
-path, which I’ll talk about more in developer and team experience. If you give
-them more metrics, more dashboards, and better error handling—especially without
-them having to instrument a single thing in their services—they’ll be much more
-likely to hop onboard.
+As you get into operate and scale levels, you also start seeing the API gateway
+become a central monitoring point for wider KPIs, like response times and usage
+patterns.
+
+Even further observability is a great place to make your platform the
+feature-rich golden path, which I’ll talk about more in developer and team
+experience. If you give them more metrics, more dashboards, and better error
+handling—especially without them having to instrument a single thing in their
+services—they’ll be much more likely to hop onboard.
+
+Finally, AI rears its head—even if we don't have a ton of confidence that's
+necessarily where things are headed.
 
 -->
 
@@ -643,6 +645,12 @@ lot of these teams face is that they’re still not consistently using the API
 gateway as the standardized technology for understanding ingress. Given the
 problems they’re experiencing, that’s probably where they’re going to focus
 their efforts next.
+
+Another thing that's happening nowhere is that they have more than one team
+using the API gateway. Before, it was the two co-founders, then for a time it
+was just a single team. Now? Multiple teams own their own path on
+`api.example.com` and it's no longer optional to have the API gateway be the
+central point.
 
 -->
 
@@ -692,17 +700,21 @@ layout: statement
 |    |    |
 | -- | -- | 
 | Build   | APIs meet basic security and compliance standards, but inconsistently, leading to risk and ad-hoc responses. <ul><li>No enforced API standards at the gateway</li><li>Infrequent/ad-hoc audits of gateway compliance</li><li>Manual configuration reviews</li></ul> |
-| Operate | We enforce standards across multiple APIs and teams to reduce the risk of being non-compliant. <ul><li>Basic API lifecycle management (e.g. versioning)</li><li>Standardized API security policies</li><li>Semi-regular scanning of API gateway policy</li></ul> |
+| Operate | We enforce standards across multiple APIs and teams to reduce the risk of being non-compliant. <ul><li>Basic API lifecycle management (e.g. versioning)</li><li>Standardized security (TLS requirements/versioning)</li><li>Semi-regular scanning of API gateway policy</li></ul> |
 | Scale   | Governance of API gateways scales across teams and cloud environments without blocking development velocity. <ul><li>Configs controlled with policy-as-code and CI/CD</li><li>Traffic auditing across multiple environments</li><li>Gateway-enforced data sovereignty</li></ul> |
 | Improve | Anyone can configure APIs within a predefined, platform-wide governance model. <ul><li>Role- or team-based API gateway management</li><li>Fine-grained access control for config changes</li><li>Configuration change tracking for compliance</li></ul> |
 | Adapt   | Our compliance is now automated and capable of adapting to new regulations or security risks dynamically. <ul><li>AI-driven, continuous compliance monitoring</li><li>Threat-based security policy updates</li><li>Automatic policy updates for regulatory changes</li></ul> |
 
 <!--
 
-Compliance is a tricky one, because more than the other threads, you might have
-to get really big before it’s much of a concern for you. It could be an area
-where, if you were to map out your Level on all 5 threads like the radars I’ve
-been showing you, it could dramatically lower your average score, right?
+Compliance is a tricky one for two reasons.
+
+First, it reaches into all the other threads and muddies things up.
+
+Second, you might have to get really big before it’s much of a concern for you.
+It could be an area where, if you were to map out your Level on all 5 threads
+like the radars I’ve been showing you, it could dramatically lower your average
+score, right?
 
 The problem is that you don’t really need it until your partners or customers
 tell you they NEED IT NOW if you have even the smallest shot of working with
@@ -711,12 +723,11 @@ them.
 Early on, you’re facing a lot of pendulum swings between your team and
 developers who want to ship. One day they’ll say, “we need API versioning,
 STAT,” and the next day, they’ll say they’ve figured out the problem themselves.
-By the Scale phase, you’ve codified enough of the implications these processes
-have on your API gateway, like multicloud, and the problems you
+But by the Scale phase, you’ve codified enough of the implications these processes
+have on your API gateway that you can start asking: 
 
-The more mature you get, the more your platform enforces the control you need
-without adding development friction… and people stop fearing audits or
-regulatory changes.
+How are we taking that last step to enable people in a safe and compliant way so
+that our API gateway isn't utter chaos?
 
 -->
 
@@ -766,9 +777,9 @@ It might not be Level 5, but it's what they need right now.
 
 # Where do you think you stand now?
 
-- 🏆 "Feeling mature, but not legacy!"
-- 🚧 "We’ve got work to do."
-- 🤡 "I just realized we don’t actually have an API gateway."
+- 😅 "We just realized no one actually owns the gateway config."
+- 🌱 “We’re maturing fast, but still figuring out how to scale safely.”
+- 🏆 "We've got solid foundations and room to grow."
 
 ---
 layout: two-cols
