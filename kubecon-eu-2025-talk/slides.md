@@ -43,7 +43,7 @@ name: story
 
 <div id="dvd-container">
 
-![](./assets/k8s.png){width=180 v-click .center}
+![](./assets/k8s.png){width=180 .center}
 
 <v-click>
 
@@ -183,12 +183,12 @@ onMounted(() => {
 
 It starts with a little baby Kubernetes cluster.
 
-- Then there's the OG Python service and a marketing site you get up and running
-  with this reliable trio.
+- Then there's some Python services...
+- And a marketing site you get up and running with this reliable trio.
 - Then you get more services—this time in a different language.
 - Then you hire a marketing team that wanted to manage blog content with an
   external service, and since they want it to be on the `/blog` path, all of a
-  sudden you need to think about the routing table in a whole new way. Do you
+  sudden you need to think about the routing topology in a whole new way. Do you
   use your cluster as a reverse proxy or maybe stand up a load balancer
   somewhere?
 - Then comes an internal project to revamp developer docs without having to
@@ -258,12 +258,12 @@ In this talk, I'm hoping to leave you wanting two things depending on who you
 are:
 
 If you're using an API gateway and you fit one of these personas, I want you to
-feel like you can self-assess the maturity of how you've adopted what's
-available in your API gateway and where you can find the most ROI next.
+walk away feeling like you can self-assess the maturity of how you've adopted what's
+available in your API gateway and where you can find the next best ROI.
 
 As a builder of an API gateway—I know you're out there—you can think about the
-user journey and ergonomics of how your product could better lead them down your
-API gateway path.
+user journey and ergonomics of how your product could better lead them down the
+product path you've created.
 
 And, either way, I'd love for this to start up a much larger conversation around
 contribution.
@@ -322,7 +322,7 @@ about problem A tomorrow because you need to address problem Z today.
 
 In terms of what I want you to take away from today's talk:
 
-1. First, that understand and feel the value of doing a self-assessment of your
+1. First, that you understand and feel the value of doing a self-assessment of your
    API gateway as one piece of technology within a wider platform and a way to
    explore what you could do next—and lean on your team to identify the right
    time and place.
@@ -473,7 +473,7 @@ layout: statement
 
 - 🧱 "I think there's something in front of my APIs… but I'm not totally sure
   what it’s doing."
-- 🔒 "Building on the API gateway involves lots of tickets and paying someone
+- 🔒 "Building on the API gateway involves lots of tickets and praying someone
   still remembers how it works."
 - 🚀 "I'm just here to validate how much further along we are than everyone
   else." 
@@ -527,14 +527,14 @@ an uneven maturity across these problems and dimensions. For example, if you’r
 just starting up your API gateway, you might make it all the way to Level 3 of
 traffic management before you give a single hoot about developer experience.
 
-For each level, I'll give a general statement about where 
-
-Along with some example features that, if you have them turned on and they're
-working well, might be a signal that you've reached a certain level.
+For each level, I'll give a general statement about where the API gateway stands
+and the big problems it's solving, along with example features that, if you have
+them turned on and they're working well, might be a signal that you've reached a
+certain level.
 
 I’m focused more on capabilities because we’re talking about a specific
 technology—unlike the CNCF’s maturity model, which focuses on categories like
-People and Business Outcomes, I don’t think any of can defensibly argue than an
+People and Business Outcomes, I don’t think any of us can defensibly argue an
 API gateway is going to drive your entire platform engineering culture.
 
 API gateways can, on the other hand, play a major role in how those successful
@@ -685,7 +685,7 @@ As you get into operate and scale levels, you also start seeing the API gateway
 become a central monitoring point for wider KPIs, like response times and usage
 patterns.
 
-Even further observability is a great place to make your platform the
+Observability is a great place to make your platform the
 feature-rich golden path, which I’ll talk about more in developer and team
 experience. If you give them more metrics, more dashboards, and better error
 handling—especially without them having to instrument a single thing in their
@@ -721,13 +721,13 @@ more automation and IaC for deployments, which has given a nice little boost to
 the developer and team experience—maturity in one thread can pull up others with
 it.
 
-They’ve matured a little bit on the observability front, part of the problem a
+They’ve matured a little bit on the observability front, but part of the problem a
 lot of these teams face is that they’re still not consistently using the API
 gateway as the standardized technology for understanding ingress. Given the
 problems they’re experiencing, that’s probably where they’re going to focus
 their efforts next.
 
-Another thing that's happening nowhere is that they have more than one team
+Another thing that's happening here is that they have more than one team
 using the API gateway. Before, it was the two co-founders, then for a time it
 was just a single team. Now? Multiple teams own their own path on
 `api.example.com` and it's no longer optional to have the API gateway be the
@@ -761,7 +761,7 @@ building a platform equates to DX improvements across the board.
 As you reach the Scale into Improve phases, you’re much more focused on
 providing golden paths, but that’s often a place where teams stall out. You’re
 always trying to strike a balance between offering an “easy” button and exposing
-advance settings, and if your platform doesn’t support that one thing, folks
+advanced settings, and if your platform doesn’t support "that one thing," folks
 will go elsewhere.
 
 Everyone’s service is a special snowflake, right?
@@ -793,13 +793,9 @@ Compliance is a tricky one for two reasons.
 First, it reaches into all the other threads and muddies things up.
 
 Second, you might have to get really big before it’s much of a concern for you.
-It could be an area where, if you were to map out your Level on all 5 threads
-like the radars I’ve been showing you, it could dramatically lower your average
-score, right?
 
-The problem is that you don’t really need it until your partners or customers
-tell you they NEED IT NOW if you have even the smallest shot of working with
-them.
+You don’t really need it until your partners or customers tell you they NEED IT
+NOW if you have even the smallest shot of working with them.
 
 Early on, you’re facing a lot of pendulum swings between your team and
 developers who want to ship. One day they’ll say, “we need API versioning,
@@ -807,8 +803,8 @@ STAT,” and the next day, they’ll say they’ve figured out the problem thems
 But by the Scale phase, you’ve codified enough of the implications these processes
 have on your API gateway that you can start asking: 
 
-How are we taking that last step to enable people in a safe and compliant way so
-that our API gateway isn't utter chaos?
+How are we taking that last step to enable people in a safe and compliant way
+that doesn't turn our API gateway into utter chaos?
 
 -->
 
@@ -859,7 +855,7 @@ It might not be Level 5, but it's what they need right now.
 # Where do you think you stand now?
 
 - 😅 "We just realized no one actually owns the gateway config."
-- 🌱 “We’re maturing fast, but still figuring out how to scale safely.”
+- 🌱 “We’re maturing, but still figuring out how to scale safely.”
 - 🏆 "We've got solid foundations and room to grow."
 
 ---
