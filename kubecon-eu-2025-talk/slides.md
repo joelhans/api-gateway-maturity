@@ -16,7 +16,7 @@ layout: intro
 
 # The API Gateway Maturity Matrix
 
-*Where Do You Rank?*
+## *Where Do You Rank?*
 
 </div>
 
@@ -30,94 +30,175 @@ layout: intro
 FOR KUBECON
 
 About me: I'm Joel, and I do all things DevRel at ngrok, the universal gateway
-company. I love stories, so let me start with a short one loosely based on
-ngrok itself.
-
+company. I love stories, so let me start with a short one that will,
+unfortunately, ring true with many of you.
 
 -->
 
 ---
+name: story
+---
 
 # Let’s start with a story…
 
-![](./assets/python.png){width=120 v-click.hide="3" .center style="rotate: 5deg;"}
-![](/assets/nginx.png){width=300 v-click .center style="margin-top: -70px; margin-left: -40px; rotate: -8deg;"}
-![](./assets/k8s.png){width=180 v-click .center style="margin-top: 60px; margin-left: 100px;"}
+<div id="dvd-container">
 
-<div v-click style="position: absolute; display: block; left: 80px; top: 80px; rotate: 3deg;">
+![](./assets/k8s.png){width=180 v-click .center}
 
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
+<v-click>
 
-<v-click at="8">
-    <span class="v2">
-        v2
-    </span>
+![](./assets/python.png){width=80 .center style="rotate: 5deg; margin-left: 180px; margin-top: -20px;"}
+![](./assets/python.png){width=80 .center style="rotate: 5deg; margin-left: 180px; margin-top: 20px;"}
+![](./assets/python.png){width=80 .center style="rotate: 5deg; margin-left: 180px; margin-top: 60px;"}
+
 </v-click>
-<v-click at="8">
-    <span class="v2" style="top: 168px;">
-        v2
-    </span>
+
+<v-click>
+
+![](/assets/nginx.png){width=120 .center style="margin-top: -110px; margin-left: -200px; rotate: -7deg;"}
+![](/assets/caddy.svg){width=120 .center style="margin-top: -70px; margin-left: -200px; rotate: -6deg;"}
+![](/assets/cert-manager.svg){width=140 .center style="margin-top: -30px; margin-left: -200px; rotate: -6deg;"}
+
 </v-click>
-<v-click at="8">
-    <span class="v2" style="top: 310px;">
-        v2
-    </span>
-</v-click>
+
+<div class="logo-group" v-click style="position: absolute; left: 40px; top: 80px; rotate: 2deg;">
+    
+<img src="/assets/go.png" class="service-go" />
+<img src="/assets/go.png" class="service-go" />
+<img src="/assets/go.png" class="service-go" />
+<img src="/assets/go.png" class="service-go" />
+<img src="/assets/go.png" class="service-go" />
+<img src="/assets/go.png" class="service-go" />
 
 </div>
 
-![](./assets/docusaurus.png){v-click width=130 .center style="margin-left: -120px; margin-top: 120px; rotate: 3deg"}
-![](./assets/webflow.png){v-click width=130 style="position: absolute; top: -30px; right: -40px; rotate: -20deg"}
-![](./assets/vercel.png){v-click width=120 height=120 style="position: absolute; bottom: 40px; right: 140px;"}
-![](./assets/remix.png){v-click width=150 style="position: absolute; top: -20px; right: -20px; rotate: -10deg"}
+![](./assets/webflow.png){v-click width=120 height=120 .center style="margin-left: 300px; margin-top: -180px;"}
+![](./assets/docusaurus.png){v-click width=110 .center style="margin-left: -160px; margin-top: 150px; rotate: 3deg"}
 
-<div v-click style="position: absolute; display: block; top: -120px; right: 340px; rotate: 102deg;">
-
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
-![](./assets/go.png){width=80}
+<div class="logo-group" v-click style="position: absolute; right: 80px; bottom: 20px; rotate: 12deg;">
+    
+![](./assets/go.png){.service-go}
+![](./assets/go.png){.service-go}
+![](./assets/go.png){.service-go}
+![](./assets/go.png){.service-go}
+![](./assets/go.png){.service-go}
+![](./assets/go.png){.service-go}
 
 </div>
+
+<div v-click>
+
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+<img src="/assets/go.png" class="service-go logo" />
+
+</div>
+
+</div>
+
+<script setup>
+import { onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
+onMounted(() => {
+  const container = document.getElementById('dvd-container')
+  const logos = Array.from(container.getElementsByClassName('logo'))
+  const containerWidth = container.offsetWidth
+  const containerHeight = container.offsetHeight
+  const size = 80
+
+  logos.forEach((logo) => {
+    // Create a new independent scope per logo
+    let x = Math.random() * (containerWidth - size)
+    let y = Math.random() * (containerHeight - size)
+    let dx = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 2)
+    let dy = (Math.random() < 0.5 ? -1 : 1) * (1 + Math.random() * 2)
+
+    logo.style.position = 'absolute'
+    logo.style.width = `${size}px`
+    logo.style.left = `${x}px`
+    logo.style.top = `${y}px`
+
+    function animate() {
+      x += dx
+      y += dy
+
+      if (x <= 0 || x + size >= containerWidth) dx = -dx
+      if (y <= 0 || y + size >= containerHeight) dy = -dy
+
+      logo.style.left = `${x}px`
+      logo.style.top = `${y}px`
+
+      requestAnimationFrame(animate)
+    }
+
+    animate() // call it *inside* this logo’s closure
+  })
+
+  // Watch for route changes to match /2?clicks=7
+  const removeIfNeeded = () => {
+    if (route.path.endsWith('/2') && route.query.clicks === '8') {
+      const logoGroups = container.querySelectorAll('.logo-group')
+      logoGroups.forEach(el => el.remove())
+      console.log('💥 Removed .logo-group because ?clicks=7')
+    }
+  }
+
+  // Run on mount and whenever route updates
+  removeIfNeeded()
+  watch(() => route.fullPath, removeIfNeeded)
+})
+</script>
 
 <style>
-    .v2 {
-        position: absolute; 
-        top: 27px; 
-        left: 34px; 
-        font-family: monospace; 
-        font-size: 0.9rem; 
-        background: white;
-        color: var(--purple);
-        padding: 0 0.2rem; 
-        border: 1px solid red;
-    }
+  .service-go {
+    width: 80px;
+    rotate: 3deg;
+  }
+
+  .v2 {
+    position: absolute; 
+    top: 27px; 
+    left: 34px; 
+    font-family: monospace; 
+    font-size: 0.9rem; 
+    background: white;
+    color: var(--purple);
+    padding: 0 0.2rem; 
+    border: 1px solid red;
+  }
 </style>
 
 <!--
 
 It starts with a little baby Kubernetes cluster.
 
-- Then there's a Python app, a marketing site, and maybe an API service or two
-  in Go.
-- Then you get more services.
-- Then you hire a marketing team that wanted to manage blog content, on the
-  `/blog` path, on a different service.
+- Then there's the OG Python service and a marketing site you get up and running
+  with this reliable trio.
+- Then you get more services—this time in a different language.
+- Then you hire a marketing team that wanted to manage blog content with an
+  external service, and since they want it to be on the `/blog` path, all of a
+  sudden you need to think about the routing table in a whole new way. Do you
+  use your cluster as a reverse proxy or maybe stand up a load balancer
+  somewhere?
 - Then comes an internal project to revamp developer docs without having to
-  rewrite the whole site.
-- Then you need to move few APIs around with redirects or new versions
-- Then everything just becomes a moving target.
-- Then trying to take back control of all this, and make it work better feels
+  rewrite the whole site. Similar problem, more trouble with routing.
+- Then you get more services.
+- Then you need to move few APIs around with rewrites and push a few services to
+  v2 while carefully deprecating v1...
+- And everything just becomes a moving target.
+- Then trying to take back control of all this, and make it work better, feels
   insurmountable.
-
-I'm sure some of you have found yourself in this story before.
 
 If you’re a CTO or engineering leader, you don’t want this happening under your
 watch. If you’re platform engineer, the path isn’t so much golden as it is
@@ -785,49 +866,40 @@ It might not be Level 5, but it's what they need right now.
 layout: two-cols
 ---
 
-# The Matrix is ready for you!
+# The Matrix is *live*!
 
-A single-page website for self-assessment: `https://api-gateway-maturity.joelhans.xyz`
+A GitHub project with full text (and extra examples!) for self-assessment:
 
-Your action items:
-
-<div style="font-size: 0.8rem;">
-
-- Take *2 minutes* here at KubeCon to rate yourself across the five problem
-  threads. 
-  - Where are you strongest? Weakest?
-- Take the model back to your team next week and explore each thread+level to
-  explore where you stand on the:
-  - Problems you're solving
-  - Value you deliver to your organization
-  - Capabilities you've mastered
-- Let me know about your experience! j.hans@ngrok.com
-
-</div>
-
-::right::
-
-![Link to api-gateway-maturity.joelhans.xyz](./assets/qr-code-web.png)
-
----
-layout: two-cols
----
-
-# Help make the Matrix better!
-
-<div style="font-size: 0.8rem;">
-
-Full text + OSS project on GitHub: `joelhans/api-gateway-maturity`
-
-- Contribute your experiences on running this "algorithm" or add new illustrations
-- Add more example capabilities to each thread+level
-- Help develop a Myers-Briggs-esque questionnaire for even smoother self-assessment
-
-</div>
+`joelhans/api-gateway-maturity`{style="font-size: 1.2rem;"}
 
 ::right::
 
 ![Link to github.com/joelhans/api-gateway-maturity](./assets/qr-code-github.png)
+
+---
+
+# Your TODOs
+
+- *Today*: Take 2 minutes here at KubeCon to rate yourself across the five
+  problem threads. 
+- *Next week*: Take the model back to your team next week and explore each
+  thread+level to explore where you stand on the:
+  - Problems you're solving
+  - Value you deliver to your organization
+  - Capabilities you've mastered
+  - Are you held back by?
+    - No business case?
+    - A lack of resources?
+    - Your API gateway?
+- Let me know about your experience! j.hans@ngrok.com
+
+---
+
+# Help make the Matrix better!
+
+- Contribute your experiences on running this "algorithm" or add new illustrations
+- Add more example capabilities to each thread+level
+- Help develop a Myers-Briggs-esque questionnaire for even smoother self-assessment
 
 <!--
 

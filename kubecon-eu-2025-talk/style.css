@@ -3,6 +3,18 @@
   position: relative;
 }
 
+#dvd-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.logo {
+  width: 100px;
+}
+
 .slidev-layout {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
@@ -26,6 +38,15 @@
 
   h1 + h2 {
     @apply mt-4 mb-2;
+  }
+
+  :not(pre) > code {
+    background: rgba(107, 33, 168, .1);
+  }
+
+  .img-center {
+    margin: 0 auto;
+    height: 100vh;
   }
 
   .col-left,
