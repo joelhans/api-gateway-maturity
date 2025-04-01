@@ -35,7 +35,7 @@ technological and team/process angle.
 | Improve | **All the things are important now. And how do I help devs move quick without losing control?** The platform team constantly modulates how the API gateway works to create a golden path for self-service while isolating different teams’ work, automating policy enforcement, and providing built-in observability for every service. |
 | Adapt   | **How do we keep innovating... without over-engineering?** The API gateway is now fully dynamic, policy-driven, and responsive to signals like traffic patterns, active threats, or cost. It’s the foundation of a unified platform that everyone not just relies on, but actually enjoys using. |
 
-For the remainder of thiss Matrix, we're looking at these 5 levels across 5
+For the remainder of this Matrix, we're looking at these 5 levels across 5
 dimensions.
 
 - Traffic management
@@ -81,6 +81,7 @@ Examples:
 - Basic per-client rate limits for fairness and abuse
 - DDoS protection and global load balancing
 - Geoblocking and IP restrictions
+- Timeouts
 
 #### Scale
 
@@ -120,7 +121,19 @@ Examples:
 
 #### Build
 
-Security enforcement is increasingly centralized at the API gateway, reducing per-service misconfigurations that lead to risk or breaches. 
+Our APIs are protected from unauthorized access, but the application of AuthN is
+inconsistent—sometimes at our gateway, sometimes embedded in our services.
+
+Examples:
+
+- API keys and basic authentication
+- Mix-and-match of AuthN/AuthZ services
+- TLS termination at the gateway edge
+
+#### Operate
+
+Security enforcement is increasingly centralized at the API gateway, reducing
+per-service misconfigurations that lead to risk or breaches.
 
 Examples:
 
@@ -128,265 +141,212 @@ Examples:
 - Centralized AuthN/AuthZ via the API gateway
 - Basic role-based access control
 
-#### Operate
-
-
-
-Examples:
-
-- 
-- 
-- 
-
 #### Scale
 
+Our API gateway is a central hardening point, and we have a unified and repeatable security model that supports multiple distributed teams.
 
+| Scale   | Our API gateway is a central hardening point, and we have a unified and repeatable security model that supports multiple distributed teams.<ul><li>Geoblocking and IP reputation filtering</li><li>mTLS for service-to-service AuthN/AuthZ</li><li>Multi-tenant isolation in gateway routes</li></ul> |
 
 Examples:
 
-- 
-- 
-- 
+- Geoblocking and IP reputation filtering
+- mTLS for service-to-service AuthN/AuthZ
+- Multi-tenant isolation in gateway routes
 
 #### Improve
 
-
+Developers can implement new Zero Trust fundamentals via the API gateway without writing tickets or waiting for approvals.
 
 Examples:
 
-- 
-- 
-- 
+- Self-service policy enforcement via OPA/Kyverno
+- Automated API posture checks
+- Fine-grained access control per team or service
 
 #### Adapt
 
-
+Our API security model is adaptive and capable of preventing breaches before they happen.
 
 Examples:
 
-- 
-- 
-- 
+- Risk-based authentication and rate limiting
+- Threat detection/intelligence feeds
+- Just-in-time access control
 
 ### Observability & debugging
 
 #### Build
 
-
+We can see *what* our API services are doing, mostly via logs, in a deployed environment to help us identify issues.
 
 Examples:
 
-- 
-- 
-- 
+- Basic logs generated at the API gateway
+- Error rate monitoring (5xx API errors)
+- Basic health check endpoints
+- 'Debugging with a shotgun'
+- Basic usage audits
 
 #### Operate
 
-
+We have a unified view *how* our APIs are doing via dashboards, making
+troubleshooting a lot easier and helping us resolve issues faster.
 
 Examples:
 
-- 
-- 
-- 
+- Gateway metrics published to observability platforms
+- Structured logs
+- Unified monitoring for one gateway+environment
+- Trcking for usage-based billing
 
 #### Scale
 
-
+Our API gateway is seen as the first place to look (and often to blame!) when
+we're monitoring the API landscape or developers need to do distributed
+debugging.
 
 Examples:
 
-- 
-- 
-- 
+- Unified monitoring across clusters/regions/clouds
+- Tracing to help find distributed bottlenecks
+- Real-time incident alerting for relevant stakeholders
+- Anomaly detection for unusual traffic patterns
 
 #### Improve
 
-
+Other teams can extend the API gateway to add their own metrics or tracing based
+on new requirements without having to change the main API surface beneath
+everyone's feet.
 
 Examples:
 
-- 
-- 
-- 
+- Automated remediation runbooks
+- Editable request replay for debugging
+- Team-specific gateway traffic dashboards
 
 #### Adapt
 
-
+API issues are fully self-healing, minimizing the need for us (platform team) or
+others (API developers) to intervene manually.
 
 Examples:
 
-- 
-- 
-- 
+- AI-driven anomaly detection and automated RCA
+- Automated incident response and rerouting
+- Business outcome correlation with ingress patterns
 
 ### Team/developer experience
 
 #### Build
 
-
+API configurations are managed with manual changes, with developers cobbling
+together ways to ship to prod. It works, but it's slow.
 
 Examples:
 
-- 
-- 
-- 
+- No IaC for API gateway configs
+- Ticket-based (or YOLO) configuration changes
+- Little to no documentation
 
 #### Operate
 
-
+API changes have a clearly-defined process, streamlining Linear/Jira/etc board
+of tickets and freeing up our team’s engineering time.
 
 Examples:
 
-- 
-- 
-- 
+- Standardized API definitions
+- IaC + CI/CD for all gateway configurations
+- Basic API catalog derived from routing topology
 
 #### Scale
 
-
+API management (via automation and IaC) helps us manage APIs at scale across
+multiple clusters, environments, and growing teams.
 
 Examples:
 
-- 
-- 
-- 
+- GitOps and CI/CD++ (regions, canaries, rollbacks)
+- Many deployment options (K8s, hybrid, multicloud)
+- API versioning strategies at the API gateway
 
 #### Improve
 
-
+Developers can self-service isolated API gateway configurations while we (now a
+platform team!) enforce policy, reducing operational overhead on a golden path.
 
 Examples:
 
-- 
-- 
-- 
+- Golden path templates/recipes for gateway patterns
+- Rich documentation of gateway best practices
+- Extensive API catalog/developer portal
 
 #### Adapt
 
-
+We give developers more than guardrails—we support them with best practices on
+designing and deploying APIs.
 
 Examples:
 
-- 
-- 
-- 
+- Support for advanced customization and plugins
+- Shift-lefted, AI-driven gateway recommendations
+- Automatic detection of unused/deprecated services
 
 ### Governance & compliance
 
 #### Build
 
-
+APIs meet basic security and compliance standards, but inconsistently, leading
+to risk and ad-hoc responses.
 
 Examples:
 
-- 
-- 
-- 
+- No enforced API standards at the gateway
+- Infrequent/ad-hoc audits of gateway compliance
+- Manual configuration reviews
 
 #### Operate
 
-
+We enforce standards across multiple APIs and teams to reduce the risk of being
+non-compliant.
 
 Examples:
 
-- 
-- 
-- 
+- Basic API lifecycle management (e.g. versioning)
+- Standardized security (TLS requirements/versioning)
+- Semi-regular scanning of API gateway policy
 
 #### Scale
 
-
+Governance of API gateways scales across teams and cloud environments without
+blocking development velocity.
 
 Examples:
 
-- 
-- 
-- 
+- Configs controlled with policy-as-code and CI/CD
+- Traffic auditing across multiple environments
+- Gateway-enforced data sovereignty
 
 #### Improve
 
-
+Anyone can configure APIs within a predefined, platform-wide governance model.
 
 Examples:
 
-- 
-- 
-- 
+- Role- or team-based API gateway management
+- Fine-grained access control for config changes
+- Configuration change tracking for compliance
 
 #### Adapt
 
-
-
-Examples:
-
-- 
-- 
-- 
-
-###
-
-
-
-#### Build
-
-
+Our compliance is now automated and capable of adapting to new regulations or
+security risks dynamically.
 
 Examples:
 
-- 
-- 
-- 
-
-#### Operate
-
-
-
-Examples:
-
-- 
-- 
-- 
-
-#### Scale
-
-
-
-Examples:
-
-- 
-- 
-- 
-
-#### Improve
-
-
-
-Examples:
-
-- 
-- 
-- 
-
-#### Adapt
-
-
-
-Examples:
-
-- 
-- 
-- 
-
-
-## Scratchpad
-
-- Obs/Build - auditing usage
-- Obs/Build - debugging with a shotgun
-- Obs/Operate - Tracking for usage-based billing
-- Obs/Scale - Anomaly detection for traffic patterns
-
-- timeouts
+- AI-driven, continuous compliance monitoring
+- Threat-based security policy updates
+- Automatic policy updates for regulatory changes
 
 ## Inspirations, references, and further reading
 
