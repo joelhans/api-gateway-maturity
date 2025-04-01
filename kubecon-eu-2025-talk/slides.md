@@ -624,7 +624,7 @@ layout: statement
 
 |    |    |
 | -- | -- | 
-| Build   | Our APIs are protected from unauthorized access, but the application of AuthN is inconsistent—sometimes at our gateway, sometimes embedded in your services. <ul><li>API keys and basic authentication</li><li>Mix-and-match of AuthN/AuthZ services</li><li>TLS termination at the gateway edge</li></ul> |
+| Build   | Our APIs are protected from unauthorized access, but the application of AuthN is inconsistent—sometimes at our gateway, sometimes embedded in our services. <ul><li>API keys and basic authentication</li><li>Mix-and-match of AuthN/AuthZ services</li><li>TLS termination at the gateway edge</li></ul> |
 | Operate | Security enforcement is increasingly centralized at the API gateway, reducing per-service misconfigurations that lead to risk or breaches. <ul><li>JWTs or OAuth2</li><li>Centralized AuthN/AuthZ via the API gateway</li><li>Basic role-based access control</li></ul> |
 | Scale   | Our API gateway is a central hardening point, and we have a unified and repeatable security model that supports multiple distributed teams.<ul><li>Geoblocking and IP reputation filtering</li><li>mTLS for service-to-service AuthN/AuthZ</li><li>Multi-tenant isolation in gateway routes</li></ul> |
 | Improve | Developers can implement new Zero Trust fundamentals via the API gateway without writing tickets or waiting for approvals. <ul><li>Self-service policy enforcement via OPA/Kyverno</li><li>Automated API posture checks</li><li>Fine-grained access control per team or service</li></ul> |
