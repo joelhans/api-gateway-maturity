@@ -189,8 +189,6 @@ Examples:
 
 Our API gateway is a central hardening point, and we have a unified and repeatable security model that supports multiple distributed teams.
 
-| Scale   | Our API gateway is a central hardening point, and we have a unified and repeatable security model that supports multiple distributed teams.<ul><li>Geoblocking and IP reputation filtering</li><li>mTLS for service-to-service AuthN/AuthZ</li><li>Multi-tenant isolation in gateway routes</li></ul> |
-
 Examples:
 
 - Geoblocking and IP reputation filtering
