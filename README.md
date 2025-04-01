@@ -19,9 +19,35 @@ folder](https://github.com/joelhans/api-gateway-maturity/tree/main/kubecon-eu-20
 
 ## Is this Matrix right for you?
 
+If you're here, probably. But especially if you're a **consumer** of an API
+gateway in one of these general job categories:
 
+- Tech lead or architect
+- Platform engineer
+- DevOps and infrastructure engineer
+
+In these cases, API gateways are the front door to your network, platform, and
+buisness, which means you need to think critically about where you are and what
+more value you could bring to the table. You need to think critically about what
+your current stack does (or doesn't provide), and then find places where you can
+invest engineering time to solve big problems.
+
+That requires a way to reflect on yourself, your team, and your offering... then
+find ways to improve or figure out where you're falling behind.
+
+If you're a **builder** of an API gateway, you might also be able to glean
+interesting information about the user journey and ergonomics of how you could
+better lead users down the product path you've created.
+
+Let's jump right into the Matrix itself.
 
 ## The API Gateway Maturity Matrix
+
+Here is the working definition of *maturity* for the sake of this model.
+
+> As adoption of an API gateway matures, engineers shift _away_ from building API
+> gateways for themselves and _torward_ enabling others to ship fast without
+> giving up control over policy and governance.
 
 Let’s start with a broad look at how API gateways transform over the five
 Levels, borrowed from the CNCF's Cloud Native Maturity Model, from both a
@@ -56,6 +82,24 @@ engineering culture.
 
 API gateways can, on the other hand, play a major role in how those successful
 that culture is.
+
+### Before you jump in
+
+This model is:
+
+- Designed to help you self-assess where your API gateway implementation is
+  today and plan ahead for what's next.
+- A way to focus on solving problems and enabling value or return on investment.
+- A collaborative effort that needs contributions from *you*!
+
+This model is not:
+
+- A way to judge your implementation or tell you how to do your job.
+- A prescriptive, "all or nothing" approach to building a mature API gateway.
+- Designed to cover *all* the cultural and technological complexity of building
+  an internal developer platform.
+- A way to pitch any particular API gateway product, service, or capability
+  *without a business need*.
 
 ### Traffic management
 
@@ -375,4 +419,8 @@ Examples:
   gateway](https://www.uber.com/blog/architecture-api-gateway/)
 - [How we built the Tinder API
   Gateway](https://medium.com/tinder/how-we-built-the-tinder-api-gateway-831c6ca5ceca)
+
+## Want to make the Matrix better?
+
+Check out the [contributing guide](CONTRIBUTING.md) for details.
 
