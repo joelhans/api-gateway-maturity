@@ -113,6 +113,8 @@ Examples:
 - Static routing on paths, subdomains, etc
 - Hardcoded rewrites and redirects
 - Simple load balancing and manual failover
+- Manual failover processes
+- Basic timeouts
 
 #### Operate
 
@@ -126,6 +128,8 @@ Examples:
 - DDoS protection and global load balancing
 - Geoblocking and IP restrictions
 - Timeouts
+- Configurable timeouts per endpoint or service
+- Advanced TLS configurations
 
 #### Scale
 
@@ -135,9 +139,13 @@ automatically fail over when things go wrong.
 
 Examples:
 
-- Multi-environment and -region routing (multicloud?)
+- Multi-environment and -region routing
 - Weighted traffic splitting for blue/green or canaries
 - Load balancing: latency-based, or sticky, round robin
+- Cross-cloud/multicloud traffic management
+- Circuit breakers to prevent cascading failures
+- Traffic mirroring for testing
+- Content/body-based routing
 
 #### Improve
 
@@ -149,6 +157,8 @@ Examples:
 - Dynamic throttling based on load or error rates
 - Custom LB: PEWMA+weighting, proximity+load
 - Request hedging for latency optimization
+- Developer-configurable traffic management policies within guardrails
+- Request prioritization based on business value
 
 #### Adapt
 
@@ -159,7 +169,8 @@ Examples:
 
 - Dynamic routing for user priority or slow starts
 - Dynamic limits based on predicted workload patterns
-- Multicloud LB based on cost and capacity
+- Multicloud load balancing based on cost and capacity
+- Predictive rate limiting adjusted to usage patterns
 
 ### Authentication & security
 
@@ -173,6 +184,9 @@ Examples:
 - API keys and basic authentication
 - Mix-and-match of AuthN/AuthZ services
 - TLS termination at the gateway edge
+- IP allowlists managed manually
+- Ad-hoc security scanning
+- Limited protection against abuse
 
 #### Operate
 
@@ -184,6 +198,7 @@ Examples:
 - JWTs or OAuth2
 - Centralized AuthN/AuthZ via the API gateway
 - Basic role-based access control
+- Key/certificate/token management with revocation
 
 #### Scale
 
@@ -194,6 +209,10 @@ Examples:
 - Geoblocking and IP reputation filtering
 - mTLS for service-to-service AuthN/AuthZ
 - Multi-tenant isolation in gateway routes
+- Regular security scanning
+- Key/certificate/token scoping to specific endpoints or methods
+- WAF integration/extension to prevent common attacks
+- Bot detection/prevention
 
 #### Improve
 
@@ -289,6 +308,8 @@ Examples:
 - No IaC for API gateway configs
 - Ticket-based (or YOLO) configuration changes
 - Little to no documentation
+- Manual API registration (tickets) in the gateway
+- Limited visibility into gateway routing
 
 #### Operate
 
@@ -298,7 +319,8 @@ of tickets and freeing up our team’s engineering time.
 Examples:
 
 - Standardized API definitions
-- IaC + CI/CD for all gateway configurations
+- IaC for all gateway configurations
+- CI/CD for configuration updates
 - Basic API catalog derived from routing topology
 
 #### Scale
@@ -311,6 +333,9 @@ Examples:
 - GitOps and CI/CD++ (regions, canaries, rollbacks)
 - Many deployment options (K8s, hybrid, multicloud)
 - API versioning strategies at the API gateway
+- Self-service API registration in the gateway
+- Configurations based on templates
+- Gateway-populated API catalog
 
 #### Improve
 
@@ -320,8 +345,10 @@ platform team!) enforce policy, reducing operational overhead on a golden path.
 Examples:
 
 - Golden path templates/recipes for gateway patterns
+- Self-service gateway policy configuration
 - Rich documentation of gateway best practices
 - Extensive API catalog/developer portal
+- Automated gateway configuration documentation
 
 #### Adapt
 
@@ -333,6 +360,7 @@ Examples:
 - Support for advanced customization and plugins
 - Shift-lefted, AI-driven gateway recommendations
 - Automatic detection of unused/deprecated services
+- Automated code generation based on gateway routes
 
 ### Governance & compliance
 
@@ -346,6 +374,8 @@ Examples:
 - No enforced API standards at the gateway
 - Infrequent/ad-hoc audits of gateway compliance
 - Manual configuration reviews
+- Ad-hoc gateway compliance reporting
+- Manual gateway configuration reviews
 
 #### Operate
 
@@ -357,6 +387,8 @@ Examples:
 - Basic API lifecycle management (e.g. versioning)
 - Standardized security (TLS requirements/versioning)
 - Semi-regular scanning of API gateway policy
+- PII masking in gateway logs
+- Regular gateway compliance reporting
 
 #### Scale
 
@@ -368,6 +400,8 @@ Examples:
 - Configs controlled with policy-as-code and CI/CD
 - Traffic auditing across multiple environments
 - Gateway-enforced data sovereignty
+- Automated gateway policy compliance checks
+- Comprehensive gateway access audit logging
 
 #### Improve
 
@@ -378,6 +412,9 @@ Examples:
 - Role- or team-based API gateway management
 - Fine-grained access control for config changes
 - Configuration change tracking for compliance
+- Self-service compliance reporting based on gateway data
+- Impact analysis for gateway policy changes
+- Team-specific governance rules in gateway configuration
 
 #### Adapt
 

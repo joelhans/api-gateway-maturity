@@ -147,7 +147,7 @@ onMounted(() => {
 
   // Watch for route changes to match /2?clicks=7
   const removeIfNeeded = () => {
-    if (route.path.endsWith('/2') && route.query.clicks === '8') {
+    if (route.path.endsWith('/2') && route.query.clicks === '7') {
       const logoGroups = container.querySelectorAll('.logo-group')
       logoGroups.forEach(el => el.remove())
       console.log('💥 Removed .logo-group because ?clicks=7')
@@ -217,16 +217,13 @@ The harder part is knowing which of the hundred buttons you should press next.
 Can you see *the next* high ROI thing to turn on to get more adoption of your
 platform and improve your internal processes?
 
-So, let me ask a question:
+So, whether you've found yourself in this story before, or maybe you've picked
+out an API gateway and got super excited to turn on all the cool features only
+to find yourself dragged into chaos...
 
-- Who has found themselves in this story before?
-- Who picked out an API gateway and got super excited about all the cool things
-  you could play around with?
-- Who actually turned on every feature?
-
-The whole point of this Matrix is to tell you that putting off certain features
-is actually okay. Maybe it's even for the best. Maybe, together, we can figure
-out what your next best thing actually is.
+The whole point of this is to say that there can and should be a way to help
+yourself find what the next best thing is, even if that means *not* turning on
+one of those features you were so excited about.
 
 -->
 
@@ -503,7 +500,8 @@ more human. I want to see some hands in the air!
 
 <!--
 
-Let’s start with a broad look at how API gateways transform over these five Levels from both a technological and team/process angle.
+Let’s start with a broad look at how API gateways transform over these five
+Levels from both a technological and team/process angle.
 
 -->
 
@@ -887,17 +885,14 @@ A GitHub project with full text (and extra examples!) for self-assessment:
     - No business case?
     - A lack of resources?
     - Your API gateway?
+- *At your leisure*: Help make the Matrix better with your contribution!
 - Let me know about your experience! j.hans@ngrok.com
 
----
-
-# Help make the Matrix better!
+<!--
 
 - Contribute your experiences on running this "algorithm" or add new illustrations
 - Add more example capabilities to each thread+level
 - Help develop a Myers-Briggs-esque questionnaire for even smoother self-assessment
-
-<!--
 
 My hope is that by making this all open for you to use and contribute to, we’re
 can all take a  step forward in our own maturity as people who think about,
@@ -946,8 +941,3 @@ Thank you for coming, everyone! Stay safe and happy travels.
 
 -->
 
-<style>
-p {
-    margin: 0;
-}
-</style>
