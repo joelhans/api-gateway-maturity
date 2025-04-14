@@ -184,7 +184,9 @@ onMounted(() => {
 It starts with a little baby Kubernetes cluster.
 
 - Then there's some Python services...
-- And a marketing site you get up and running with this reliable trio.
+- And a marketing site you get up and running with an nginx ingress controller
+  and a few other goodies because S3 and Cloudfront is just too easy for you and
+  you like a challenge.
 - Then you get more services—this time in a different language.
 - Then you hire a marketing team that wanted to manage blog content with an
   external service, and since they want it to be on the `/blog` path, all of a
@@ -874,17 +876,16 @@ A GitHub project with full text (and extra examples!) for self-assessment:
 
 # Your TODOs
 
-- *Today*: Take 2 minutes here at KubeCon to rate yourself across the five
-  problem threads. 
+- *Today (okay, tomorrow)*: Take 2 minutes here at KubeCon to rate yourself
+  across the five problem threads. Where are you strong? Where do you wish you
+  could do more?
 - *Next week*: Take the model back to your team next week and explore each
   thread+level to explore where you stand on the:
   - Problems you're solving
   - Value you deliver to your organization
   - Capabilities you've mastered
-  - Are you held back by?
-    - No business case?
-    - A lack of resources?
-    - Your API gateway?
+  - Places you're held back by a lack of business case, resources, or an API
+    gateway that just can't carry you where you need to be.
 - *At your leisure*: Help make the Matrix better with your contribution!
 - Let me know about your experience! j.hans@ngrok.com
 
@@ -893,6 +894,7 @@ A GitHub project with full text (and extra examples!) for self-assessment:
 - Contribute your experiences on running this "algorithm" or add new illustrations
 - Add more example capabilities to each thread+level
 - Help develop a Myers-Briggs-esque questionnaire for even smoother self-assessment
+- Maybe 
 
 My hope is that by making this all open for you to use and contribute to, we’re
 can all take a  step forward in our own maturity as people who think about,

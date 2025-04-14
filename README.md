@@ -7,9 +7,14 @@ environments?
 
 In this project, we're trying build on the CNCF's [Cloud Native Maturity
 Model](https://maturitymodel.cncf.io/) to create a practical framework for API
-gateway evolution across five key phases: **Build** (choosing fundamentals), **Operate**
-(implementing CI/CD), **Scale** (mastering multi-region), **Improve** (balancing control
-with velocity), and **Adapt** (enabling advanced patterns).
+gateway evolution across five key phases: **Build** (choosing fundamentals),
+**Operate** (implementing CI/CD), **Scale** (mastering multi-region),
+**Improve** (balancing control with velocity), and **Adapt** (enabling advanced
+patterns).
+
+The goal is to have a framework for organizations to self-assess the maturity of
+their API gateway based on five dimensions, or capability threads, that can then
+help guide them toward the next-best improvement.
 
 This project began as a talk for [KubeCon EU
 2025](https://kccnceu2025.sched.com/event/1tx7N). The slides for the talk are
